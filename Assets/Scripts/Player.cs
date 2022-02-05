@@ -4,21 +4,35 @@ namespace Assets.Scripts {
 	class Player : MonoBehaviour {
 		private int grade;
 
-		public string LetterGrade => grade switch {
-			> 100 => "S",
-			(>= 97) and (<= 100) => "A+",
-			(>= 94) and (< 97) => "A",
-			(>= 90) and (< 94) => "A-",
-			(>= 87) and (< 90) => "B+",
-			(>= 84) and (< 87) => "B",
-			(>= 80) and (< 83) => "B-",
-			(>= 77) and (< 80) => "C+",
-			(>= 74) and (< 77) => "C",
-			(>= 70) and (< 73) => "C-",
-			(>= 67) and (< 70) => "D+",
-			(>= 64) and (< 67) => "D",
-			_ => "F"
-		};
+		public string LetterGrade {
+			get {
+				if( grade > 100 )
+					return "S";
+				if( grade >= 97 )
+					return "A+";
+				if( grade >= 94 )
+					return "A";
+				if( grade >= 90 )
+					return "A-";
+				if( grade >= 87 )
+					return "B+";
+				if( grade >= 84 )
+					return "B";
+				if( grade >= 80 )
+					return "B-";
+				if( grade >= 77 )
+					return "C+";
+				if( grade >= 74 )
+					return "C";
+				if( grade >= 70 )
+					return "C-";
+				if( grade >= 67 )
+					return "D+";
+				if( grade >= 64 )
+					return "D";
+				return "F";
+			}
+		}
 
 		public int Grade { get; set; }
 
