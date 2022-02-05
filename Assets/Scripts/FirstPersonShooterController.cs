@@ -15,6 +15,7 @@ public class FirstPersonShooterController : MonoBehaviour {
 	private Vector2 lookInput;
 	private Vector2 moveInput;
 
+	[HideInInspector]
 	public Vector3 groundFacing;
 	void Update() {
 
