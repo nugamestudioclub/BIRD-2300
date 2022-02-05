@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class World : GameObject {
+public class World : MonoBehaviour {
 	[SerializeField]
 	private Vetor3 windowedPosition;
 	
@@ -27,13 +27,23 @@ public class World : GameObject {
 	
 	public SetFullScreen() {
 		cam.transform.position = fullscreenPosition;
-		cam.transform.rotation = windowedEulerAngles;
+		
+		cam.transform.Rotate(
+			windowedEulerAngles.x - cam.transform.rotation.eulerAngles.x,
+			windowedEulerAngles.y - cam.transform.rotation.eulerAngles.y,
+			windowedEulerAngles.z - cam.transform.rotation.eulerAngles.z
+		);
 		fullscreen = true;
 	}
 	
 	public SetWindowed() {
 		cam.transform.position = windowedPosition;
-		cam.transform.rotation = windowedEulerAngles;
+		
+		cam.transform.Rotate(
+			fullscreenEulerAngles.x - cam.transform.rotation.eulerAngles.x,
+			fullscreenEulerAngles.y - cam.transform.rotation.eulerAngles.y,
+			fullscreenEulerAngles.z - cam.transform.rotation.eulerAngles.z
+		);
 		fullScreen = false;
 	}
 }
