@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour {
 
 	public bool IsTabbedOut { get; private set; }
 
-
 	public void ToggleTab() {
 		SwitchCamera();
 		IsTabbedOut = !IsTabbedOut;
