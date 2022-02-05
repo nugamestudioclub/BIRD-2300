@@ -16,17 +16,28 @@ public class FirstPersonShooterController : MonoBehaviour
     private float forwardInput;
     private float sideInput;
 
+    public Vector3 groundFacing;
     void Update()
     {
         
         if(!GameManager.Instance.isTabbbedOut) {
             GetInputs();
+            UpdateGroundFacing();
         } else
         {
             ResetInputs();
         }
         TranslateInputs();
         KeyboardMovement();
+    }
+
+    private void UpdateGroundFacing()
+    {
+        Vector3 trueGroundFacing = transform.rotation.eulerAngles;
+        Vector3 removeY = new Vector3(trueGroundFacing.x, 0, trueGroundFacing.y).normalized;
+
+
+        groundFacing = removeY;
     }
     void TranslateInputs()
     {
@@ -38,12 +49,14 @@ public class FirstPersonShooterController : MonoBehaviour
         // rotate the camera
         transform.eulerAngles = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
     }
+    //move to movement script
     void KeyboardMovement()
     {
-        Vector3 dir = new Vector3(0, 0, 0);
-        dir.x = forwardInput;
+        Vector3 dir = Vector3.zero;
+        //dir.x = forwardInput;
         dir.z = sideInput;
         transform.Translate(dir * moveSpeed * Time.deltaTime);
+        transform.Translate(forwardInput * groundFacing * moveSpeed*  Time.deltaTime);
     }
 
     public void GetInputs()
@@ -60,5 +73,5 @@ public class FirstPersonShooterController : MonoBehaviour
         yInput = 0;
         forwardInput = 0;
         sideInput = 0;
-}
+    }
 }
