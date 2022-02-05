@@ -6,22 +6,22 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public bool isTabbbedOut { get; private set; }
+    public bool IsTabbedOut { get; private set; }
 
 
     public void ToggleTab()
     {
-        isTabbbedOut = !isTabbbedOut;
+        IsTabbedOut = !IsTabbedOut;
     }
 
     public void TabOut()
     {
-        isTabbbedOut = true;
+        IsTabbedOut = true;
     }
 
     public void TabIn()
     {
-        isTabbbedOut = false;
+        IsTabbedOut = false;
     }
 
 	[SerializeField]
