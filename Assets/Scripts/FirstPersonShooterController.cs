@@ -25,8 +25,8 @@ public class FirstPersonShooterController : MonoBehaviour {
 		else {
 			ResetInputs();
 		}
-		TranslateInputs();
-		KeyboardMovement();
+		Look();
+		Move();
 	}
 
 	private void UpdateGroundFacing() {
@@ -36,7 +36,7 @@ public class FirstPersonShooterController : MonoBehaviour {
 
 		groundFacing = removeY;
 	}
-	void TranslateInputs() {
+	void Look() {
 		// get the mouse inputs
 		float y = lookInput.x * turnSpeed * Time.deltaTime * 100;
 		rotX += lookInput.y * turnSpeed * Time.deltaTime * 100;
@@ -46,12 +46,14 @@ public class FirstPersonShooterController : MonoBehaviour {
 		transform.eulerAngles = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
 	}
 	//move to movement script
-	void KeyboardMovement() {
-		Vector3 dir = Vector3.zero;
-		//dir.x = forwardInput;
-		dir.z = moveInput.x;
-		transform.Translate(dir * moveSpeed * Time.deltaTime);
-		transform.Translate(moveInput.y * groundFacing * moveSpeed * Time.deltaTime);
+	void Move() {
+		var delta = new Vector3(
+			Vector3.Dot(moveInput, Vector3.right),
+			0.0f,
+			Vector3.Dot(moveInput, Vector3.up)
+		) * moveSpeed * Time.deltaTime;
+
+		transform.Translate(delta);
 	}
 
 	public void GetInputs() {
