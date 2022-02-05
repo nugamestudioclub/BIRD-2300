@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-	public static GameManager Instance { get; private set; }
+public class GameManager : MonoBehaviour
+{
+    public static GameManager Instance { get; private set; }
 
-	public bool IsTabbedOut { get; private set; }
+    public bool isTabbbedOut { get; private set; }
 
-	public void ToggleTab() {
-		SwitchCamera();
-		IsTabbedOut = !IsTabbedOut;
-	}
 
-	public void TabOut() {
-		IsTabbedOut = true;
-	}
+    public void ToggleTab()
+    {
+        isTabbbedOut = !isTabbbedOut;
+    }
 
-	public void TabIn() {
-		IsTabbedOut = false;
-	}
+    public void TabOut()
+    {
+        isTabbbedOut = true;
+    }
+
+    public void TabIn()
+    {
+        isTabbbedOut = false;
+    }
 
 	[SerializeField]
 	private Vector3 windowedPosition;
@@ -35,38 +39,39 @@ public class GameManager : MonoBehaviour {
 	[SerializeField]
 	private Camera cam;
 
-	public void SwitchCamera() {
-		if( IsTabbedOut )
-			SetFullscreen();
-		else
+	private bool fullscreen = true;
+
+	public void SwitchCamera()
+	{
+		if (fullscreen)
 			SetWindowed();
+		else
+			SetFullscreen();
 	}
 
-	public void SetFullscreen() {
+	public void SetFullscreen()
+	{
 		cam.transform.position = fullscreenPosition;
-		cam.transform.Rotate(
-			windowedEulerAngles.x - cam.transform.rotation.eulerAngles.x,
-			windowedEulerAngles.y - cam.transform.rotation.eulerAngles.y,
-			windowedEulerAngles.z - cam.transform.rotation.eulerAngles.z
-		);
+		//cam.transform.rotation = windowedEulerAngles;
+		fullscreen = true;
 	}
 
-	public void SetWindowed() {
-		cam.transform.position = windowedPosition;
-		cam.transform.Rotate(
-			fullscreenEulerAngles.x - cam.transform.rotation.eulerAngles.x,
-			fullscreenEulerAngles.y - cam.transform.rotation.eulerAngles.y,
-			fullscreenEulerAngles.z - cam.transform.rotation.eulerAngles.z
-		);
-	}
+	public void SetWindowed()
+    {
+        cam.transform.position = windowedPosition;
+       // cam.transform.rotation = windowedEulerAngles;
+        fullscreen = false;
+    }
 
-	void Awake() {
-		Instance = this;
-	}
+	void Awake()
+    {
+        Instance = this;
+    }
 
-	void Update() {
-		if( Input.GetKeyDown(KeyCode.Tab) )
-			ToggleTab();
-	}
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+            ToggleTab();
+    }
 
 }

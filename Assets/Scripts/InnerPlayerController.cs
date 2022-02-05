@@ -20,7 +20,7 @@ public class InnerPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.Instance.IsTabbedOut)
+        if (!GameManager.Instance.isTabbbedOut)
         {
             GetInputs();
             GetGroundFacing();

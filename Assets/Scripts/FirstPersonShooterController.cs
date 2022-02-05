@@ -20,7 +20,7 @@ public class FirstPersonShooterController : MonoBehaviour
     void Update()
     {
         
-        if(!GameManager.Instance.IsTabbedOut) {
+        if(!GameManager.Instance.isTabbbedOut) {
             GetInputs();
             UpdateGroundFacing();
         } else
