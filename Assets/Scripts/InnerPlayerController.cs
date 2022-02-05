@@ -1,4 +1,7 @@
 using UnityEngine;
 
-public class InnerPlayerController {
+public class InnerPlayerController : MonoBehaviour
+{
+
+
 }
