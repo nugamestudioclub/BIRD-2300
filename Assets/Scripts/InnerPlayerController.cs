@@ -20,6 +20,8 @@ public class InnerPlayerController : MonoBehaviour
 
     [SerializeField]
     private AudioClip gunReload;
+
+    [SerializeField]
     private AudioClip birdReload;
 
     [SerializeField]
