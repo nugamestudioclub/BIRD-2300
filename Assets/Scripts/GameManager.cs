@@ -13,7 +13,13 @@ public class GameManager : MonoBehaviour
 
     public void ToggleTab()
     {
-        IsTabbedOut = !IsTabbedOut;
+		if (IsTabbedOut) {
+			TabIn();
+        }
+        else
+        {
+			TabOut();
+        }
     }
 
     public void TabOut()
@@ -74,6 +80,7 @@ public class GameManager : MonoBehaviour
 	void Awake()
     {
         Instance = this;
+		TabIn();
     }
 
     void Update()
