@@ -10,12 +10,13 @@ public class NPCPresentingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(waitForNextAnim());
+        InvokeRepeating("waitForNextAnim", 4, 0);
+        
     }
 
-   IEnumerator waitForNextAnim()
+   void waitForNextAnim()
     {
-        yield return new WaitForSeconds(4);
+        //yield return new WaitForSeconds(4);
         int state = Random.Range(0,3);
         switch (state) {
             case 0:
@@ -34,7 +35,7 @@ public class NPCPresentingManager : MonoBehaviour
                 anim.SetBool("Pointing_Right", true);
                 break;
         }
-        StartCoroutine(waitForNextAnim());
+       // StartCoroutine(waitForNextAnim());
 
     }
 }

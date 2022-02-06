@@ -27,18 +27,18 @@ public class NPCSittingAnimationManager : MonoBehaviour
 
         switch (choice) {
             case 0:
-                anim.SetBool("idle", true);
+                anim.SetBool("Idle", true);
                 anim.SetBool("TurnHead1", false);
                 anim.SetBool("TurnHead2", false);
 
                 break;
             case 1:
-                anim.SetBool("idle", false);
+                anim.SetBool("Idle", false);
                 anim.SetBool("TurnHead1", true);
                 anim.SetBool("TurnHead2", false);
                 break;
             case 2:
-                anim.SetBool("idle", false);
+                anim.SetBool("Idle", false);
                 anim.SetBool("TurnHead1", false);
                 anim.SetBool("TurnHead2", true);
                 break;
@@ -46,17 +46,18 @@ public class NPCSittingAnimationManager : MonoBehaviour
 
 
         //anim.Play(a);
-        StartCoroutine(WaitForNextRandom());
+        InvokeRepeating("WaitForNextRandom", 4, 0);
+        //StartCoroutine(WaitForNextRandom());
     }
     IEnumerator StartRandom()
     {
         yield return new WaitForSeconds(Random.Range(0, 3));
         PickRandom();
     }
-    IEnumerator WaitForNextRandom()
+    void WaitForNextRandom()
     {
-        yield return new WaitForSeconds(4);
+        //yield return new WaitForSeconds(4);
         PickRandom();
-        StartCoroutine(WaitForNextRandom());
+        //StartCoroutine(WaitForNextRandom());
     }
 }

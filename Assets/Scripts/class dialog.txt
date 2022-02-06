@@ -1,0 +1,10 @@
+Teacher: Hello class I hope you're having a nice day!
+Teacher: Today we're finishing off the bird unit, we'll go over what we expect in the presentations
+Teacher: ... and then we'll start presentations.
+Teacher: I expect you all have prepared your presentations for today!
+Class: YEEEEEESSSSS TEACHER!
+Teacher: Ok, so lets start by reviewing the importance of <color=orange>birds</color>....
+Teacher: ..._
+Teacher: ... can someone in the class give us a related fact about this bird, how about you {MC}?
+Teacher: ... {MC} please explain to us something related to this slide.
+Teacher: ... I would like you {MC} to explain this slide to the class.

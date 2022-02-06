@@ -15,6 +15,7 @@ public class FirstPersonShooterController : MonoBehaviour {
 	private Vector2 lookInput;
 	private Vector2 moveInput;
 
+	[HideInInspector]
 	public Vector3 groundFacing;
 	void Update() {
 
@@ -31,7 +32,10 @@ public class FirstPersonShooterController : MonoBehaviour {
 
 	private void UpdateGroundFacing() {
 		Vector3 trueGroundFacing = transform.rotation.eulerAngles;
-		Vector3 removeY = new Vector3(trueGroundFacing.x, 0, trueGroundFacing.y).normalized;
+
+
+		Vector3 removeY = new Vector3(trueGroundFacing.x, 0, trueGroundFacing.y);
+		
 
 
 		groundFacing = removeY;
@@ -47,13 +51,19 @@ public class FirstPersonShooterController : MonoBehaviour {
 	}
 	//move to movement script
 	void Move() {
-		var delta = new Vector3(
-			Vector3.Dot(moveInput, Vector3.right),
-			0.0f,
-			Vector3.Dot(moveInput, Vector3.up)
-		) * moveSpeed * Time.deltaTime;
+		//get my position in the world
+		Vector3 moveInputs = new Vector3(moveInput.x, 0, moveInput.y);
+		//move in only x and z direction (not y's up or down)
+		Vector3 directionMovingForward =
+			(new Vector3(transform.forward.x, 0, transform.forward.z)).normalized;
 
-		transform.Translate(delta);
+		Vector3 directionMovingSide =
+			(new Vector3(transform.right.x, 0, transform.right.z)).normalized;
+
+		Vector3 finalMoveDir = (directionMovingForward * moveInputs.z + directionMovingSide * moveInputs.x)
+			.normalized * moveSpeed * Time.deltaTime;
+
+		transform.Translate(finalMoveDir, Space.World);
 	}
 
 	public void GetInputs() {
