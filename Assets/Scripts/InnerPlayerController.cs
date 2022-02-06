@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class InnerPlayerController : MonoBehaviour
 {
-
-
     public int maxHealth = 10;
     private int currentHealth;
 
@@ -14,6 +12,18 @@ public class InnerPlayerController : MonoBehaviour
     private GameObject bullet;
     [SerializeField]
     private GameObject eggBullet;
+
+    [SerializeField]
+    private AudioClip gunshot;
+    [SerializeField]
+    private AudioClip birdshot;
+
+    [SerializeField]
+    private AudioClip gunReload;
+    private AudioClip birdReload;
+
+    [SerializeField]
+    AudioSource audioSource;
 
     [SerializeField]
     [Tooltip("Amount of time in seconds before each shot")]
@@ -94,10 +104,12 @@ public class InnerPlayerController : MonoBehaviour
             if (GameManager.Instance.Birdiness < 1)
             {
                 animator.Play("gun_reload_ui");
+                audioSource.PlayOneShot(gunReload);
             }
             else
             {
                 animator.Play("bird_reload_ui");
+                audioSource.PlayOneShot(birdReload);
             }
             //set time to shoot to be extended
             timeSinceLastShot = -2f;
@@ -116,11 +128,13 @@ public class InnerPlayerController : MonoBehaviour
         {
             currentBullet = bullet;
             animator.Play("gun_shoot_ui");
+            audioSource.PlayOneShot(gunshot);
         }
         else
         {
             currentBullet = eggBullet;
             animator.Play("bird_shoot_ui");
+            audioSource.PlayOneShot(birdshot);
         }
         GameObject spawned = Instantiate(currentBullet, transform.position + directionLooking * 2, Quaternion.identity);
         //set bullet movement direction (diretion of cam facing)
