@@ -5,12 +5,8 @@ public class AudioManager : MonoBehaviour {
 	private AudioSource classroomAmbiance;
 
 	[SerializeField]
-	[Range(0.0f, float.MaxValue)]
-	private float classroomMinVolume = 0.5f;
-
-	[SerializeField]
-	[Range(0.0f, float.MaxValue)]
-	private float classroomMaxVolume = 1.0f;
+	[Range(0.0f, 0.5f)]
+	private float classroomAmbianceBoost = 0.1f;
 
 	[SerializeField]
 	private AudioSource crows;
@@ -35,10 +31,12 @@ public class AudioManager : MonoBehaviour {
 	
 	public void FocusOnClassroom() {
 		hedgeAmbiance.Stop();
-		classroomAmbiance.volume = classroomMaxVolume;
+		classroomAmbiance.volume += classroomAmbianceBoost;
+		if( !crows.isPlaying && GameManager.Instance.Birdiness >= 1 )
+			crows.Play();
 	}
 	public void FocusOnGame() {
 		hedgeAmbiance.Play();
-		classroomAmbiance.volume = classroomMinVolume;
+		classroomAmbiance.volume -= classroomAmbianceBoost;
 	}
 }
