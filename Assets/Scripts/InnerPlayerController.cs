@@ -9,6 +9,9 @@ public class InnerPlayerController : MonoBehaviour
     private int currentBullets;
 
     [SerializeField]
+    private GameObject bullet;
+
+    [SerializeField]
     [Tooltip("Amount of time in seconds before each shot")]
     private float fireRate = 0.2f;
 
