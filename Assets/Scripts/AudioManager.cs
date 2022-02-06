@@ -9,6 +9,13 @@ public class AudioManager : MonoBehaviour {
 	private float classroomAmbianceBoost = 0.1f;
 
 	[SerializeField]
+	private AudioSource gameMusic;
+
+	[SerializeField]
+	[Range(0.0f, 0.5f)]
+	private float gameMusicBoost = 0.5f;
+
+	[SerializeField]
 	private AudioSource crows;
 
 	[SerializeField]
@@ -32,11 +39,13 @@ public class AudioManager : MonoBehaviour {
 	public void FocusOnClassroom() {
 		hedgeAmbiance.Stop();
 		classroomAmbiance.volume += classroomAmbianceBoost;
+		gameMusic.volume -= gameMusicBoost;
 		if( !crows.isPlaying && GameManager.Instance.Birdiness >= 1 )
 			crows.Play();
 	}
 	public void FocusOnGame() {
 		hedgeAmbiance.Play();
 		classroomAmbiance.volume -= classroomAmbianceBoost;
+		gameMusic.volume += gameMusicBoost;
 	}
 }
