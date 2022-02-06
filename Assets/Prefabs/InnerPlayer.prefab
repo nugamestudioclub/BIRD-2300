@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 878541973372634037}
   - component: {fileID: 878541973372634036}
   - component: {fileID: 57524035146278044}
+  - component: {fileID: 5291350149475022965}
   m_Layer: 0
   m_Name: InnerPlayer
   m_TagString: Untagged
@@ -129,7 +130,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   maxBullets: 6
+  bullet: {fileID: 0}
   fireRate: 0.2
+--- !u!114 &5291350149475022965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878541973372634039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf1e92108c34eff4a8a1b2ffd6d0af09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 4
+  moveSpeed: 2
+  minTurnAngle: -90
+  maxTurnAngle: 90
+  cam: {fileID: 0}
+  groundFacing: {x: 0, y: 0, z: 0}
 --- !u!1 &9044390660708003773
 GameObject:
   m_ObjectHideFlags: 0
