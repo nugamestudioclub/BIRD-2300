@@ -28,11 +28,18 @@ public class notebook : MonoBehaviour
     private List<string> remFacts = new List<string>();
     private List<Button> entries = new List<Button>();
     public OutsideGameManager dialogManager;
-
+    public TextAsset factsTxt;
 
     // Start is called before the first frame update
     void Start()
     {
+        string[] txt = factsTxt.text.Split('\n');
+        foreach(string s in txt)
+        {
+            facts.Add("   - "+s);
+        }
+
+
         facts.Add("   - Birds got feathers.");
         facts.Add("   - Birds are Birds.");
         facts.Add("   - I dunno pigeons exist.");
@@ -92,10 +99,36 @@ public class notebook : MonoBehaviour
         }
         this.activeEntires += 1;
         entries.Add(newBtn.GetComponent<Button>());
-        newBtn.GetComponent<Button>().onClick.AddListener(delegate { dialogManager.SubmitText(facts[i]); });
+        newBtn.GetComponent<Button>().onClick.AddListener(delegate { this.SubmitTxt(facts[i]); });
 
     }
-
+    private void SubmitTxt(string txt) {
+        this.removeEntry(txt);
+        dialogManager.SubmitText(txt);
+    }
+    
+    public void removeEntry(string name)
+    {
+        int pos = -1;
+        for(int i = 0; i < this.entries.Count; i++)
+        {
+            if (entries[i].GetComponentInChildren<Text>().text == name)
+            {
+                pos = i;
+            }
+        }
+        if (pos != -1)
+        {
+            Button btn = entries[pos];
+            Destroy(btn.gameObject);
+            entries.RemoveAt(pos);
+        }
+        for(int i = pos; i < this.entries.Count; i++)
+        {
+            Vector3 localPos = this.entries[i].transform.localPosition;
+            this.entries[i].transform.localPosition = new Vector3(localPos.x, localPos.y-70, localPos.z);
+        }
+    }
   
 
     public void addRandomToList()
