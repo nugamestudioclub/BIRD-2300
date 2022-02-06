@@ -8,7 +8,7 @@ public class OutsideGameManager : MonoBehaviour
     [SerializeField]
     private Animator anim;
     [SerializeField]
-    private Animator camera;
+    private Animator cam;
     
     private bool animRunning = false;
     private bool notebookOpen = false;
@@ -21,15 +21,25 @@ public class OutsideGameManager : MonoBehaviour
     [SerializeField]
     private Text dialogText;
     private Button dialogTextButton;
-    private string name;
+    private string pname;
     private bool isAttentive = true;
 
     public Image loginpage;
     public Button nameSubmit;
     public InputField nameInput;
-    
-    
 
+    public float grade = 100;
+    private bool submittedText = false;
+    private bool timerRunning = false;
+   
+    [SerializeField]
+    private float timeUntilResponse = 15f;
+    [SerializeField]
+    private DialogManager dialogManager;
+
+    [SerializeField]
+    private List<string> stupidFacts = new List<string>();
+    private bool submittedStupid = false;
 
     // Start is called before the first frame update
     void Start()
@@ -46,21 +56,23 @@ public class OutsideGameManager : MonoBehaviour
         dialogTextButton.onClick.AddListener(Attentive);
         this.dialogTextButton.interactable = false;
         this.nameSubmit.onClick.AddListener(SubmitName);
+       
 
 
     }
 
     void SubmitName()
     {
-        this.name = this.nameInput.text;
+        this.pname = this.nameInput.text;
         this.loginpage.gameObject.SetActive(false);
+        dialogManager.StartEvents();
     }
    /// <summary>
    /// Alt-tab out and pay attention.
    /// </summary>
     private void Attentive()
     {
-        camera.Play("zoom out");
+        cam.Play("zoom out");
         
         this.isAttentive = true;
     }
@@ -69,7 +81,7 @@ public class OutsideGameManager : MonoBehaviour
     /// </summary>
     private void Unattentive()
     {
-        camera.Play("zoom in");
+        cam.Play("zoom in");
         CloseNotebook();
         this.isAttentive = false;
 
@@ -81,7 +93,7 @@ public class OutsideGameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
-            Ray ray = camera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            Ray ray = cam.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit))
             {
@@ -162,12 +174,13 @@ public class OutsideGameManager : MonoBehaviour
 
     public void Say(string text)
     {
-        if (text.Contains(name))
+        if (text.Contains("{MC}"))
         {
             string txt = text;
-            txt = txt.Replace(name, "<color=yellow>" + name + "</color");
+            txt = txt.Replace("{MC}", "<color=yellow>" + name + "</color>");
             this.dialogTextButton.interactable = true;
             this.dialogText.text = txt;
+            StartCoroutine(RunResponseTimer());
         }
         else
         {
@@ -175,5 +188,48 @@ public class OutsideGameManager : MonoBehaviour
             this.dialogText.text = text;
         }
 
+    }
+
+
+    /// <summary>
+    /// Used to submit a response to question.
+    /// </summary>
+    public void SubmitText(string text)
+    {
+        print("Submitted:" + text);
+        if (timerRunning)
+        {
+            this.submittedText = true;
+            if (stupidFacts.Contains(text))
+            {
+                this.submittedStupid = true;
+            }
+        }
+            
+    }
+    /// <summary>
+    /// Runs timer after a question is asked towards player. If player does not run SubmitText() on time
+    /// then 10 points removed from grade. If player manages to run SubmitText() on time, then no points removed.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator RunResponseTimer()
+    {
+        print("Timer startered!!");
+        this.timerRunning = true;
+        yield return new WaitForSeconds(this.timeUntilResponse);
+        this.timerRunning = false;
+        if (submittedText)
+        {
+            if (!submittedStupid)
+                this.Say("Teacher: Correct!");
+            else
+                this.Say("Teacher: Correct! I guess. You should put that fact on your resume!");
+        }
+        else
+        {
+            this.grade -= 10f;
+            this.Say("Teacher: Incorrect, please pay attention to the class in the future!");
+        }
+        submittedText = false;
     }
 }

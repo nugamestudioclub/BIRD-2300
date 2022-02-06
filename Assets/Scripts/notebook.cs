@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class notebook : MonoBehaviour
 {
@@ -9,18 +9,36 @@ public class notebook : MonoBehaviour
     private string x;
     public GameObject entryGameObj;
     public GameObject parent;
-
+    [SerializeField]
     private List<string> facts = new List<string>();
     private List<string> notebookList = new List<string>();
     private List<GameObject> entryList = new List<GameObject>();
     private bool needsUpdate = false;
     private int currentOffset = -50;
+
+
+    [SerializeField]
+    private GameObject buttonObject;
+    [SerializeField]
+    private Canvas entryCanvas;
+    private int activeEntires = 0;
+    private List<string> remFacts = new List<string>();
+    private List<Button> entries = new List<Button>();
+    public OutsideGameManager dialogManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
         facts.Add("   - Birds got feathers.");
         facts.Add("   - Birds are Birds.");
         facts.Add("   - I dunno pigeons exist.");
+        remFacts.AddRange(facts);
+        createNewEntry();
+        createNewEntry();
+        createNewEntry();
+        createNewEntry();
+       
     }
 
     // Update is called once per frame
@@ -55,6 +73,25 @@ public class notebook : MonoBehaviour
         entryList.Add(newEntry);
     }
 
+    public void createNewEntry()
+    {
+        
+        GameObject newBtn = Instantiate(buttonObject,entryCanvas.transform);
+        newBtn.transform.localPosition = new Vector3(0,200-(this.activeEntires*70),0);
+        int i = Random.Range(0, remFacts.Count);
+        newBtn.GetComponentInChildren<Text>().text = facts[i];
+        remFacts.RemoveAt(i);
+        if (remFacts.Count == 0)
+        {
+            remFacts.AddRange(facts);
+        }
+        this.activeEntires += 1;
+        entries.Add(newBtn.GetComponent<Button>());
+        newBtn.GetComponent<Button>().onClick.AddListener(delegate { dialogManager.SubmitText(facts[i]); });
+
+    }
+
+  
     public void addRandomToList()
     {
         if (facts.Count != 0)
@@ -64,5 +101,11 @@ public class notebook : MonoBehaviour
             notebookList.Add(newFact);
             needsUpdate = true;
         }
+    }
+
+   
+    public int getEntryCount()
+    {
+        return this.facts.Count;
     }
 }
