@@ -10,6 +10,7 @@ public class DialogManager : MonoBehaviour
 
     private string[] eventOptions;
     private string[] initLines;
+    private bool waitingOnSubmit = true;
 
     // Start is called before the first frame update
     void Start()
@@ -51,16 +52,20 @@ public class DialogManager : MonoBehaviour
     //Say random event between 15 to 30 seconds.
     IEnumerator WaitForNextEvent()
     {
-        float dur = Random.Range(10, 20);
+        float dur = Random.Range(20, 30);
         yield return new WaitForSeconds(dur);
         int choice = Random.Range(1, this.eventOptions.Length);
         
         manager.Say(this.eventOptions[choice]);
-        StartCoroutine(WaitForNextEvent());
+        this.waitingOnSubmit = true;
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (manager.hasSubmitted()&&waitingOnSubmit)
+        {
+            waitingOnSubmit = false;
+            StartCoroutine(WaitForNextEvent());
+        }
     }
 }

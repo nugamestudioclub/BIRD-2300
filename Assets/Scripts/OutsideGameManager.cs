@@ -174,8 +174,11 @@ public class OutsideGameManager : MonoBehaviour
 
     public void Say(string text)
     {
+        
         if (text.Contains("{MC}"))
         {
+            this.submittedText = false;
+            this.submittedStupid = false;
             string txt = text;
             txt = txt.Replace("{MC}", "<color=yellow>" + name + "</color>");
             this.dialogTextButton.interactable = true;
@@ -204,6 +207,10 @@ public class OutsideGameManager : MonoBehaviour
             {
                 this.submittedStupid = true;
             }
+            if (!submittedStupid)
+                this.Say("Teacher: Correct!");
+            else
+                this.Say("Teacher: Correct! I guess. You should put that fact on your resume!");
         }
             
     }
@@ -220,10 +227,7 @@ public class OutsideGameManager : MonoBehaviour
         this.timerRunning = false;
         if (submittedText)
         {
-            if (!submittedStupid)
-                this.Say("Teacher: Correct!");
-            else
-                this.Say("Teacher: Correct! I guess. You should put that fact on your resume!");
+            
         }
         else
         {
@@ -231,5 +235,10 @@ public class OutsideGameManager : MonoBehaviour
             this.Say("Teacher: Incorrect, please pay attention to the class in the future!");
         }
         submittedText = false;
+    }
+
+    public bool hasSubmitted()
+    {
+        return this.submittedText||this.submittedStupid;
     }
 }
