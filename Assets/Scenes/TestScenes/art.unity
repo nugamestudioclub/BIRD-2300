@@ -565,7 +565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.86, y: 0.9122432}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.2106018, y: -0.12162781}
+  m_AnchoredPosition: {x: -0.21057129, y: -0.12164307}
   m_SizeDelta: {x: 49.255707, y: 13.623795}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &146723413
@@ -3512,6 +3512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EntryButton
       objectReference: {fileID: 0}
+    - target: {fileID: 122142691149960271, guid: 34accbbe498550a4a99153ad3f0afb76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 122142691152374976, guid: 34accbbe498550a4a99153ad3f0afb76, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -3762,7 +3766,7 @@ MonoBehaviour:
   timeUntilResponse: 15
   dialogManager: {fileID: 884612374}
   stupidFacts: []
-  timerTxt: {fileID: 0}
+  timerTxt: {fileID: 146723413}
 --- !u!114 &884612374
 MonoBehaviour:
   m_ObjectHideFlags: 0
