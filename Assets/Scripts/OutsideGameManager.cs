@@ -49,6 +49,7 @@ public class OutsideGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         notebookNotify.onClick.AddListener(OpenNotebook);
         Text txt = notebookNotify.GetComponent<Text>();
         txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 0f);
