@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour {
         {
 			var distance = Vector3.Distance(transform.position, player.transform.position);
 
-			Debug.Log(distance);
+			//Debug.Log(distance);
 			if (distance <= spotDistance)
 				agent.destination = player.transform.position;
 			else

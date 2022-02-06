@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 5
-  rigidbody: {fileID: 8712472886234369908}
+  explosionTime: 0.25
   speed: 12
+  damage: 5
   direction: {x: 0, y: 0, z: 0}
 --- !u!54 &8712472886234369908
 Rigidbody:
@@ -90,6 +91,7 @@ GameObject:
   - component: {fileID: 336034208845067900}
   - component: {fileID: 8841323840324089953}
   - component: {fileID: 3818148271546498154}
+  - component: {fileID: 2273448793193026439}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -175,3 +177,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpCamera: {fileID: 0}
+--- !u!95 &2273448793193026439
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8198019313126020354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a36969da9df19fb49a3b5af3e906c7aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
