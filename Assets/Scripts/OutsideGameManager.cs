@@ -43,7 +43,7 @@ public class OutsideGameManager : MonoBehaviour
 
     [SerializeField]
     private Text timerTxt;
-    private int timer = 15;
+    private float timer = 15;
     private int timer_def = 15;
 
     // Start is called before the first frame update
@@ -61,7 +61,7 @@ public class OutsideGameManager : MonoBehaviour
         dialogTextButton.onClick.AddListener(Attentive);
         this.dialogTextButton.interactable = false;
         this.nameSubmit.onClick.AddListener(SubmitName);
-       
+        this.timerTxt.gameObject.SetActive(false);
 
 
     }
@@ -127,6 +127,12 @@ public class OutsideGameManager : MonoBehaviour
                 StartCoroutine(WaitForAnimationOver());
             }
             
+        }
+
+        if (this.timerRunning)
+        {
+            this.timer -= Time.deltaTime;
+            timerTxt.text = ((int)this.timer).ToString()+" seconds";
         }
     }
 
@@ -213,6 +219,7 @@ public class OutsideGameManager : MonoBehaviour
             {
                 this.submittedStupid = true;
             }
+            this.timerTxt.gameObject.SetActive(false);
             if (!submittedStupid)
                 this.Say("Teacher: Correct!");
             else
@@ -230,7 +237,7 @@ public class OutsideGameManager : MonoBehaviour
         print("Timer startered!!");
         this.timerRunning = true;
         this.timerTxt.gameObject.SetActive(true);
-
+        
         yield return new WaitForSeconds(this.timeUntilResponse);
         this.timerRunning = false;
         if (submittedText)
@@ -243,6 +250,10 @@ public class OutsideGameManager : MonoBehaviour
             this.Say("Teacher: Incorrect, please pay attention to the class in the future!");
         }
         submittedText = false;
+        this.timerTxt.gameObject.SetActive(false);
+        this.timer = this.timer_def;
+        
+        
     }
 
     public bool hasSubmitted()
