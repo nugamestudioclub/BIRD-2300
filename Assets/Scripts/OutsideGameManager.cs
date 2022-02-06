@@ -41,6 +41,11 @@ public class OutsideGameManager : MonoBehaviour
     private List<string> stupidFacts = new List<string>();
     private bool submittedStupid = false;
 
+    [SerializeField]
+    private Text timerTxt;
+    private int timer = 15;
+    private int timer_def = 15;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -224,6 +229,8 @@ public class OutsideGameManager : MonoBehaviour
     {
         print("Timer startered!!");
         this.timerRunning = true;
+        this.timerTxt.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(this.timeUntilResponse);
         this.timerRunning = false;
         if (submittedText)
