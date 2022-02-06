@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3772215732473270432}
   - component: {fileID: 3772215732473270433}
   - component: {fileID: 3772215732473270434}
-  - component: {fileID: 3772215732473270439}
   - component: {fileID: 3772215732473270438}
   m_Layer: 0
   m_Name: InnerCamera
@@ -86,24 +85,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3772215732473270435}
   m_Enabled: 1
---- !u!114 &3772215732473270439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3772215732473270435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf1e92108c34eff4a8a1b2ffd6d0af09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turnSpeed: 8
-  moveSpeed: 4
-  minTurnAngle: -90
-  maxTurnAngle: 90
-  cam: {fileID: 3772215732473270433}
-  groundFacing: {x: 0, y: 0, z: 0}
 --- !u!114 &3772215732473270438
 MonoBehaviour:
   m_ObjectHideFlags: 0
