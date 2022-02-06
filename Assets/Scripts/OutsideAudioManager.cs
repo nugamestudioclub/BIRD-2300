@@ -19,6 +19,11 @@ public class OutsideAudioManager : MonoBehaviour
     [Header("Sound Effects")]
     [SerializeField]
     private AudioSource soundEffectsSource;
+    [SerializeField]
+    private AudioClip paperSound;
+    [SerializeField]
+    private AudioClip computerSound1;
+
 
     
 

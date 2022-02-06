@@ -45,10 +45,10 @@ public class notebook : MonoBehaviour
         facts.Add("   - I dunno pigeons exist.");
 
         remFacts.AddRange(facts);
-        createNewEntry();
-        createNewEntry();
-        createNewEntry();
-        createNewEntry();
+        //createNewEntry();
+        //createNewEntry();
+        //createNewEntry();
+        //createNewEntry();
 
     }
 
@@ -64,7 +64,7 @@ public class notebook : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            createNewEntry();
+        //    createNewEntry();
         }
     }
 
