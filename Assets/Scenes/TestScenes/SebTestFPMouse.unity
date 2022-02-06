@@ -722,8 +722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1e92108c34eff4a8a1b2ffd6d0af09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 4
-  moveSpeed: 2
+  turnSpeed: 8
+  moveSpeed: 4
   minTurnAngle: -90
   maxTurnAngle: 90
   cam: {fileID: 0}
