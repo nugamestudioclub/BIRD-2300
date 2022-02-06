@@ -7,6 +7,9 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private float lifetime = 5f;
     private float currentLifetime;
+    [SerializeField]
+    private float explosionTime = .25f;
+    private float currentExplosionTime;
 
     private Rigidbody rigidbody;
     private Animator animator;
@@ -23,6 +26,7 @@ public class BulletController : MonoBehaviour
     void Awake()
     {
         currentLifetime = 0;
+        currentExplosionTime = 0f;
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
     }
@@ -32,15 +36,24 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentLifetime > lifetime)
+        if (isExploding)
+        {
+            rigidbody.velocity = Vector3.zero;
+            currentExplosionTime += Time.deltaTime;
+            
+        }else
+        {
+            //keep moving
+            rigidbody.velocity = direction * speed;
+        }
+        currentLifetime += Time.deltaTime;
+        if (currentLifetime > lifetime || currentExplosionTime > explosionTime)
         {
             Destroy(gameObject);
         }
-        //keep moving
-        rigidbody.velocity = direction * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
 
         //if colliding with enemy
@@ -49,24 +62,22 @@ public class BulletController : MonoBehaviour
             //deal dmg to enemy
             enemy.TakeDamage(damage);
         }
-        
-
-        //if colliding with player
-
-        //deal dmg to player
-
 
         //no matter what destroy me
+        Explode();
     }
 
     private void Explode()
     {
+        Debug.Log(gameObject.name + " is exploding");
         //play explosion animation
         animator.Play("explode");
         //play explosion sound
 
         //start exploding
         isExploding = true;
+
+
     }
 
 }
