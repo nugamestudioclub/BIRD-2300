@@ -7,76 +7,56 @@ public class FirstPersonShooterController : MonoBehaviour {
 	public float moveSpeed = 2.0f;
 	public float minTurnAngle = -90.0f;
 	public float maxTurnAngle = 90.0f;
-	private float rotX;
+	private float lookX;
 
 	[SerializeField]
 	private Camera cam;
 
-	private Vector2 lookInput;
-	private Vector2 moveInput;
-
-	[HideInInspector]
 	public Vector3 groundFacing;
 	void Update() {
-
 		if( !GameManager.Instance.IsTabbedOut ) {
-			GetInputs();
-			UpdateGroundFacing();
+			Look();
+			Move();
 		}
-		else {
-			ResetInputs();
-		}
-		Look();
-		Move();
 	}
 
-	private void UpdateGroundFacing() {
-		Vector3 trueGroundFacing = transform.rotation.eulerAngles;
-
-
-		Vector3 removeY = new Vector3(trueGroundFacing.x, 0, trueGroundFacing.y);
-		
-
-
-		groundFacing = removeY;
-	}
-	void Look() {
-		// get the mouse inputs
-		float y = lookInput.x * turnSpeed * Time.deltaTime * 100;
-		rotX += lookInput.y * turnSpeed * Time.deltaTime * 100;
-		// clamp the vertical rotation
-		rotX = Mathf.Clamp(rotX, minTurnAngle, maxTurnAngle);
-		// rotate the camera
-		transform.eulerAngles = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
-	}
-	//move to movement script
-	void Move() {
-		//get my position in the world
-		Vector3 moveInputs = new Vector3(moveInput.x, 0, moveInput.y);
-		//move in only x and z direction (not y's up or down)
-		Vector3 directionMovingForward =
-			(new Vector3(transform.forward.x, 0, transform.forward.z)).normalized;
-
-		Vector3 directionMovingSide =
-			(new Vector3(transform.right.x, 0, transform.right.z)).normalized;
-
-		Vector3 finalMoveDir = (directionMovingForward * moveInputs.z + directionMovingSide * moveInputs.x)
-			.normalized * moveSpeed * Time.deltaTime;
-
-		transform.Translate(finalMoveDir, Space.World);
+	private Vector2 LookInput() {
+		return Vector2.ClampMagnitude(
+			new Vector2(
+				Input.GetAxis("Mouse X"),
+				Input.GetAxis("Mouse Y")),
+			1f
+		);
 	}
 
-	public void GetInputs() {
-		lookInput = LookInput();
-		moveInput = MoveInput();
+	private void LookX(float deltaX) {
+		lookX = Mathf.Clamp(lookX - deltaX, minTurnAngle, maxTurnAngle);
+		cam.transform.eulerAngles = new Vector3(
+			lookX,
+			cam.transform.eulerAngles.y,
+			cam.transform.eulerAngles.z
+		);
 	}
 
-	private void ResetInputs() {
-		lookInput = Vector2.zero;
-		moveInput = Vector2.zero;
+	private void LookY(float deltaY) {
+		float lookY = transform.eulerAngles.y + deltaY;
+
+		transform.eulerAngles = new Vector3(
+			transform.eulerAngles.x,
+			lookY,
+			transform.eulerAngles.z
+		);
 	}
 
-	public Vector2 MoveInput() {
+	private void Look() {
+		float factor = 100 * turnSpeed * Time.deltaTime;
+		var input = LookInput();
+
+		LookX(input.y * factor);
+		LookY(input.x * factor);
+	}
+
+	private Vector2 MoveInput() {
 		return Vector2.ClampMagnitude(
 			new Vector2(
 				Input.GetAxis("Horizontal"),
@@ -85,12 +65,23 @@ public class FirstPersonShooterController : MonoBehaviour {
 		);
 	}
 
-	public Vector2 LookInput() {
-		return Vector2.ClampMagnitude(
-			new Vector2(
-				Input.GetAxis("Mouse X"),
-				Input.GetAxis("Mouse Y")),
-			1f
-		);
+	private void Move() {
+		var input = MoveInput();
+		var moveInputs = new Vector3(input.x, 0.0f, input.y);
+		var directionMovingForward = new Vector3(
+			transform.forward.x,
+			0.0f,
+			transform.forward.z
+		).normalized;
+		var directionMovingSide = new Vector3(
+			transform.right.x,
+			0.0f,
+			transform.right.z
+		).normalized;
+		var finalMoveDir = moveSpeed * Time.deltaTime *
+			(directionMovingForward * moveInputs.z + directionMovingSide * moveInputs.x)
+			.normalized;
+
+		transform.Translate(finalMoveDir, Space.World);
 	}
 }
