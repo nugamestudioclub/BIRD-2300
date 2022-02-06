@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Title
-  m_Shader: {fileID: -6465566751694194690, guid: 490d1189e8c8d8a43b078a17f02fc214, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 309e0dd8c71ac4948be4a664e85513e3, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -39,7 +39,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_1c671e8fd4b642ffae3d8986e26af2c4:
-        m_Texture: {fileID: 2800000, guid: f1fceb0a5d7a68945b2129743ab7a9c3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0d3627bab29b48e419f34ba6534424e2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_45d7cd9a93e04dfd980ea305409c4fbd:
@@ -51,7 +51,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_eef5d7e086a84bb4861d4cfb416934fb:
-        m_Texture: {fileID: 2800000, guid: fc527c93fe556cd4b9059603a0829119, type: 3}
+        m_Texture: {fileID: 2800000, guid: 39c5ca1131d85014d87db3e90aaef54f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AnisotropyMap:

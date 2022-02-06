@@ -127,6 +127,7 @@ public class OutsideGameManager : MonoBehaviour
 
     public void OpenNotebook()
     {
+        print("opening");
         if (!animRunning)
         {
             if (!notebookOpen)
