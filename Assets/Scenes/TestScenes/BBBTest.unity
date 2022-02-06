@@ -2542,6 +2542,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 57524035146278044, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1117604414}
     - target: {fileID: 878541973372634032, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2594,6 +2598,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1716848620}
+    - target: {fileID: 8360635667909790061, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
 --- !u!1 &1060275877
@@ -2691,6 +2699,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1117604414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 134567400391123871, guid: 58deeb90e63d4fc4490d3b4760e8295a, type: 3}
+  m_PrefabInstance: {fileID: 296626832}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1716848620 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8360635667909790061, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
@@ -2918,6 +2931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43cd1d3056d6cf4498c14e8748ca75f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spotDistance: 10
 --- !u!195 &3932564225820812657
 NavMeshAgent:
   m_ObjectHideFlags: 0
