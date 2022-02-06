@@ -12,6 +12,8 @@ public class InnerPlayerController : MonoBehaviour
 
     [SerializeField]
     private GameObject bullet;
+    [SerializeField]
+    private GameObject eggBullet;
 
     [SerializeField]
     [Tooltip("Amount of time in seconds before each shot")]
@@ -89,7 +91,6 @@ public class InnerPlayerController : MonoBehaviour
             //refill bullets
             currentBullets = maxBullets;
             //play animation 
-            animator.Play("gun_reload_ui");
             if (GameManager.Instance.Birdiness < 1)
             {
                 animator.Play("gun_reload_ui");
@@ -108,8 +109,20 @@ public class InnerPlayerController : MonoBehaviour
     {
         Debug.Log("Shooting a bullet...");
         //spawn bullet in at a certain postion (cam facing position)
-        GameObject spawned = Instantiate(bullet, transform.position + directionLooking * 2, Quaternion.identity);
+        GameObject currentBullet;
 
+        //play animation
+        if (GameManager.Instance.Birdiness < 1)
+        {
+            currentBullet = bullet;
+            animator.Play("gun_shoot_ui");
+        }
+        else
+        {
+            currentBullet = eggBullet;
+            animator.Play("bird_shoot_ui");
+        }
+        GameObject spawned = Instantiate(currentBullet, transform.position + directionLooking * 2, Quaternion.identity);
         //set bullet movement direction (diretion of cam facing)
         if (spawned.TryGetComponent(out BulletController controller))
         {
@@ -119,16 +132,8 @@ public class InnerPlayerController : MonoBehaviour
         //remove bullet
         currentBullets--;
         timeSinceLastShot = 0f;
-        //play animation
         
-        if (GameManager.Instance.Birdiness < 1)
-        {
-            animator.Play("gun_shoot_ui");
-        }
-        else
-        {
-            animator.Play("bird_shoot_ui");
-        }
+       
     }
 
 

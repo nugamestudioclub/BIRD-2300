@@ -131,6 +131,7 @@ MonoBehaviour:
   maxHealth: 10
   maxBullets: 6
   bullet: {fileID: 4501351912622033541, guid: 028995a1b2017a546baed726e41559be, type: 3}
+  eggBullet: {fileID: 4501351912622033541, guid: c4d169f586e228649abbcc60541bb172, type: 3}
   fireRate: 0.2
   playerCam: {fileID: 9096584099937550712}
   directionLooking: {x: 0, y: 0, z: 0}
