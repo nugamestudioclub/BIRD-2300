@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3772215732473270435}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -102,7 +102,7 @@ MonoBehaviour:
   moveSpeed: 4
   minTurnAngle: -90
   maxTurnAngle: 90
-  cam: {fileID: 0}
+  cam: {fileID: 3772215732473270433}
   groundFacing: {x: 0, y: 0, z: 0}
 --- !u!114 &3772215732473270438
 MonoBehaviour:
@@ -266,7 +266,7 @@ Canvas:
   m_GameObject: {fileID: 7017785365216410754}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 3772215732473270433}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -276,7 +276,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!114 &7241569634999296720
 MonoBehaviour:
@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 3727195359624631117}
   - component: {fileID: 8614294661543753061}
   - component: {fileID: 6187878442113876005}
+  - component: {fileID: 1404842788}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -393,3 +394,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1404842788
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8859424195372807985}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b421ac4b4eb209a42abefcdd82dea180, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

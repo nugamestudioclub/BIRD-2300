@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class InnerPlayerController : MonoBehaviour
 {
+
+
     public int maxHealth = 10;
     private int currentHealth;
 
@@ -13,9 +15,12 @@ public class InnerPlayerController : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Amount of time in seconds before each shot")]
-    private float fireRate = 0.2f;
+    private float fireRate = 0.4f;
 
     private float timeSinceLastShot;
+
+    public Animator animator;
+    public Animator birdAnimator;
 
     private void Start()
     {
@@ -27,6 +32,7 @@ public class InnerPlayerController : MonoBehaviour
         currentHealth = maxHealth;
         currentBullets = maxBullets;
         timeSinceLastShot = 0f;
+        animator.Play("gun_start_ui");
     }
 
     private void Update()
@@ -35,6 +41,10 @@ public class InnerPlayerController : MonoBehaviour
         {
             CheckForShooting();
             CheckForReload();
+        }
+        if (GameManager.Instance.Birdiness > 1)
+        {
+            animator = birdAnimator;
         }
 
         timeSinceLastShot += Time.deltaTime;
@@ -65,7 +75,7 @@ public class InnerPlayerController : MonoBehaviour
             //refill bullets
             currentBullets = maxBullets;
             //play animation 
-
+            animator.Play("gun_reload_ui");
             //set time to shoot to be extended
             timeSinceLastShot = -2f;
         }
@@ -79,11 +89,16 @@ public class InnerPlayerController : MonoBehaviour
         GameObject spawned = Instantiate(bullet);
 
         //set bullet movement direction (diretion of cam facing)
-        //BulletController bulletController = 
+        if (spawned.TryGetComponent(out BulletController controller))
+        {
+           // controller.direction = 
+        }
+            
         //remove bullet
         currentBullets--;
         timeSinceLastShot = 0f;
         //play animation
+        animator.Play("gun_shoot_ui");
     }
 
 
