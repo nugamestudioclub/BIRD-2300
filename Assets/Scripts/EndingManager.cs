@@ -17,7 +17,7 @@ public class EndingManager : MonoBehaviour
     {
         string score = PlayerPrefs.GetString(key);
         //testing
-     
+
         letterGrade.text = score;
         Color finalColor;
         switch (score)

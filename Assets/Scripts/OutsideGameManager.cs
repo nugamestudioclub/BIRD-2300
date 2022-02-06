@@ -46,10 +46,20 @@ public class OutsideGameManager : MonoBehaviour
     private float timer = 15;
     private int timer_def = 15;
 
+    [SerializeField]
+    private Image birdObjective1;
+    [SerializeField]
+    private Image birdObjective2;
+    [SerializeField]
+    private Image birdObejctive3;
+    
+    private bool[] objectivesObtained = new bool[] { false, false, false };
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
         notebookNotify.onClick.AddListener(OpenNotebook);
         Text txt = notebookNotify.GetComponent<Text>();
         txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 0f);
@@ -63,6 +73,10 @@ public class OutsideGameManager : MonoBehaviour
         this.dialogTextButton.interactable = false;
         this.nameSubmit.onClick.AddListener(SubmitName);
         this.timerTxt.gameObject.SetActive(false);
+
+        this.birdObjective1.gameObject.SetActive(false);
+        this.birdObjective2.gameObject.SetActive(false);
+        this.birdObejctive3.gameObject.SetActive(false);
 
 
     }
@@ -79,7 +93,6 @@ public class OutsideGameManager : MonoBehaviour
     private void Attentive()
     {
         cam.Play("zoom out");
-        
         this.isAttentive = true;
     }
     /// <summary>
@@ -91,6 +104,46 @@ public class OutsideGameManager : MonoBehaviour
         CloseNotebook();
         this.isAttentive = false;
 
+    }
+    /// <summary>
+    /// Unlocks objective bird. 1 is the flying bird, 2 is the cage, 3 is the kiwi.
+    /// </summary>
+    /// <param name="number">The objective number range (1-3)</param>
+    public void UnlockObjective(int number)
+    {
+        switch (number) {
+            case 1:
+                this.birdObjective1.gameObject.SetActive(true);
+                objectivesObtained[0] = true;
+                break;
+            case 2:
+                this.birdObjective2.gameObject.SetActive(true);
+                objectivesObtained[1] = true;
+                break;
+            case 3:
+                objectivesObtained[2] = true;
+                this.birdObejctive3.gameObject.SetActive(true);
+                break;
+        
+        }
+
+    }
+
+    /// <summary>
+    /// Gets the number of objectives achieved.
+    /// </summary>
+    /// <returns>The number of objectives achieved.</returns>
+    public int GetObjectivesScore()
+    {
+        int count = 0;
+        for(int i = 0; i < this.objectivesObtained.Length; i++)
+        {
+            if (this.objectivesObtained[i])
+            {
+                count += 1;
+            }
+        }
+        return count;
     }
 
     // Update is called once per frame

@@ -62,6 +62,10 @@ public class notebook : MonoBehaviour
             currentOffset -= 50;
             needsUpdate = false;
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            createNewEntry();
+        }
     }
 
     private void addNewEntry()
@@ -100,7 +104,7 @@ public class notebook : MonoBehaviour
         this.activeEntires += 1;
         entries.Add(newBtn.GetComponent<Button>());
         newBtn.GetComponent<Button>().onClick.AddListener(delegate { this.SubmitTxt(facts[i]); });
-
+        dialogManager.NotifyNoteAdded();
     }
     private void SubmitTxt(string txt) {
         this.removeEntry(txt);
@@ -110,6 +114,7 @@ public class notebook : MonoBehaviour
     public void removeEntry(string name)
     {
         int pos = -1;
+
         for(int i = 0; i < this.entries.Count; i++)
         {
             if (entries[i].GetComponentInChildren<Text>().text == name)
@@ -126,8 +131,9 @@ public class notebook : MonoBehaviour
         for(int i = pos; i < this.entries.Count; i++)
         {
             Vector3 localPos = this.entries[i].transform.localPosition;
-            this.entries[i].transform.localPosition = new Vector3(localPos.x, localPos.y-70, localPos.z);
+            this.entries[i].transform.localPosition = new Vector3(localPos.x, localPos.y+70, localPos.z);
         }
+        this.activeEntires -= 1;
     }
   
 
