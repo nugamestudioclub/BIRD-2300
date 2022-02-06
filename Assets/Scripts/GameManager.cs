@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	
     public static GameManager Instance { get; private set; }
+
 
     public bool IsTabbedOut { get; private set; }
 
@@ -42,6 +44,8 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField]
 	private Camera cam;
+
+	public Camera innerPlayerCam;
 
 	private bool fullscreen = true;
 

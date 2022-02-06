@@ -19,6 +19,11 @@ public class InnerPlayerController : MonoBehaviour
 
     private float timeSinceLastShot;
 
+    [SerializeField]
+    private Camera playerCam;
+    [SerializeField]
+    private Vector3 directionLooking;
+
     public Animator animator;
 
     private void Start()
@@ -53,6 +58,9 @@ public class InnerPlayerController : MonoBehaviour
         {
             GameManager.Instance.Birdiness++;
         }
+
+        directionLooking = playerCam.transform.forward;
+
         timeSinceLastShot += Time.deltaTime;
     }
 
@@ -105,7 +113,7 @@ public class InnerPlayerController : MonoBehaviour
         //set bullet movement direction (diretion of cam facing)
         if (spawned.TryGetComponent(out BulletController controller))
         {
-           // controller.direction = 
+            controller.direction = directionLooking;
         }
             
         //remove bullet

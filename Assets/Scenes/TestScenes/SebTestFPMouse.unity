@@ -339,11 +339,6 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
---- !u!20 &747147304 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 8360635667909790061, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
-  m_PrefabInstance: {fileID: 2069054930}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896952520
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +691,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1117763234 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3772215732473270433, guid: 422c75d6ec6efb44c814b97109c5f8c8, type: 3}
+  m_PrefabInstance: {fileID: 3772215731373614595}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1404842788 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1404842788, guid: 422c75d6ec6efb44c814b97109c5f8c8, type: 3}
@@ -806,7 +806,7 @@ PrefabInstance:
     - target: {fileID: 57524035146278044, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 935327608}
+      objectReference: {fileID: 4501351912622033541, guid: 028995a1b2017a546baed726e41559be, type: 3}
     - target: {fileID: 57524035146278044, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
       propertyPath: animator
       value: 
@@ -815,6 +815,10 @@ PrefabInstance:
       propertyPath: animatior
       value: 
       objectReference: {fileID: 1404842788}
+    - target: {fileID: 57524035146278044, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1117763234}
     - target: {fileID: 878541973372634032, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -866,7 +870,7 @@ PrefabInstance:
     - target: {fileID: 5291350149475022965, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 747147304}
+      objectReference: {fileID: 1117763234}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
 --- !u!1 &2113814665
@@ -1094,5 +1098,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6582645191766673970, guid: 0e5bba50a5280834999b25abb4423714, type: 3}
+      propertyPath: innerPlayerCam
+      value: 
+      objectReference: {fileID: 1117763234}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e5bba50a5280834999b25abb4423714, type: 3}
