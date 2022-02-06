@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.UI;
 
 public class notebook : MonoBehaviour
@@ -9,7 +10,9 @@ public class notebook : MonoBehaviour
     private string x;
     public GameObject entryGameObj;
     public GameObject parent;
+
     [SerializeField]
+
     private List<string> facts = new List<string>();
     private List<string> notebookList = new List<string>();
     private List<GameObject> entryList = new List<GameObject>();
@@ -33,12 +36,13 @@ public class notebook : MonoBehaviour
         facts.Add("   - Birds got feathers.");
         facts.Add("   - Birds are Birds.");
         facts.Add("   - I dunno pigeons exist.");
+
         remFacts.AddRange(facts);
         createNewEntry();
         createNewEntry();
         createNewEntry();
         createNewEntry();
-       
+
     }
 
     // Update is called once per frame
@@ -73,6 +77,7 @@ public class notebook : MonoBehaviour
         entryList.Add(newEntry);
     }
 
+
     public void createNewEntry()
     {
         
@@ -92,6 +97,7 @@ public class notebook : MonoBehaviour
     }
 
   
+
     public void addRandomToList()
     {
         if (facts.Count != 0)
@@ -102,6 +108,7 @@ public class notebook : MonoBehaviour
             needsUpdate = true;
         }
     }
+
 
    
     public int getEntryCount()
