@@ -76,9 +76,10 @@ public class InnerPlayerController : MonoBehaviour
     {
         Debug.Log("Shooting a bullet...");
         //spawn bullet in at a certain postion (cam facing position)
+        GameObject spawned = Instantiate(bullet);
 
         //set bullet movement direction (diretion of cam facing)
-
+        //BulletController bulletController = 
         //remove bullet
         currentBullets--;
         timeSinceLastShot = 0f;
