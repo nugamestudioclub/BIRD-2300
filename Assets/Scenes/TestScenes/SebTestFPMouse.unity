@@ -339,6 +339,11 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
+--- !u!20 &747147304 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8360635667909790061, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
+  m_PrefabInstance: {fileID: 2069054930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896952520
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +808,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 935327608}
     - target: {fileID: 57524035146278044, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1404842788}
+    - target: {fileID: 57524035146278044, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
       propertyPath: animatior
       value: 
       objectReference: {fileID: 1404842788}
@@ -854,6 +863,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InnerPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 5291350149475022965, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 747147304}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2e191ad93184ce4aa61a0dc72bc22e9, type: 3}
 --- !u!1 &2113814665

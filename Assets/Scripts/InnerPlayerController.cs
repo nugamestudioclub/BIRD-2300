@@ -20,7 +20,6 @@ public class InnerPlayerController : MonoBehaviour
     private float timeSinceLastShot;
 
     public Animator animator;
-    public Animator birdAnimator;
 
     private void Start()
     {
@@ -32,7 +31,14 @@ public class InnerPlayerController : MonoBehaviour
         currentHealth = maxHealth;
         currentBullets = maxBullets;
         timeSinceLastShot = 0f;
-        animator.Play("gun_start_ui");
+        if (GameManager.Instance.Birdiness < 1)
+        {
+            animator.Play("gun_start_ui");
+        } else
+        {
+            animator.Play("bird_start_ui");
+        }
+        
     }
 
     private void Update()
@@ -42,11 +48,11 @@ public class InnerPlayerController : MonoBehaviour
             CheckForShooting();
             CheckForReload();
         }
-        if (GameManager.Instance.Birdiness > 1)
+       
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            animator = birdAnimator;
+            GameManager.Instance.Birdiness++;
         }
-
         timeSinceLastShot += Time.deltaTime;
     }
 
@@ -76,6 +82,14 @@ public class InnerPlayerController : MonoBehaviour
             currentBullets = maxBullets;
             //play animation 
             animator.Play("gun_reload_ui");
+            if (GameManager.Instance.Birdiness < 1)
+            {
+                animator.Play("gun_reload_ui");
+            }
+            else
+            {
+                animator.Play("bird_reload_ui");
+            }
             //set time to shoot to be extended
             timeSinceLastShot = -2f;
         }
@@ -98,7 +112,15 @@ public class InnerPlayerController : MonoBehaviour
         currentBullets--;
         timeSinceLastShot = 0f;
         //play animation
-        animator.Play("gun_shoot_ui");
+        
+        if (GameManager.Instance.Birdiness < 1)
+        {
+            animator.Play("gun_shoot_ui");
+        }
+        else
+        {
+            animator.Play("bird_shoot_ui");
+        }
     }
 
 

@@ -16,12 +16,16 @@ public class GameManager : MonoBehaviour
 
     public void TabOut()
     {
-        IsTabbedOut = true;
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		IsTabbedOut = true;
     }
 
     public void TabIn()
     {
-        IsTabbedOut = false;
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		IsTabbedOut = false;
     }
 
 	[SerializeField]
