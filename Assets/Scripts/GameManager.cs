@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     public bool IsTabbedOut { get; private set; }
 
+	[SerializeField]
+	private notebook notebook;
+	public notebook Notebook => notebook;
 
     public void ToggleTab()
     {
