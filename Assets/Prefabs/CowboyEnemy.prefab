@@ -130,8 +130,9 @@ GameObject:
   - component: {fileID: 3875314700457965993}
   - component: {fileID: 8170088982292895816}
   - component: {fileID: 3875314700457965992}
-  - component: {fileID: 3875314700457966006}
   - component: {fileID: 3875314700457966007}
+  - component: {fileID: 3875314700457966006}
+  - component: {fileID: 6989772526787079328}
   m_Layer: 0
   m_Name: CowboyEnemy
   m_TagString: Untagged
@@ -248,21 +249,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &3875314700457966006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3875314700457965995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43cd1d3056d6cf4498c14e8748ca75f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spotDistance: 10
-  maxHealth: 10
-  deathtime: 1.5
 --- !u!195 &3875314700457966007
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -285,6 +271,37 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3875314700457966006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875314700457965995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43cd1d3056d6cf4498c14e8748ca75f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spotDistance: 10
+  maxHealth: 10
+  deathtime: 1.5
+  bark: {fileID: 0}
+--- !u!114 &6989772526787079328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3875314700457965995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72768631ea9c7fe4598972ee37d39843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 8998060769292036813}
+  attack: {fileID: 8300000, guid: 8a34bdd5946ed254182460938050d482, type: 3}
+  death: {fileID: 8300000, guid: c5f409d3063f43f47b65dc09377b2740, type: 3}
 --- !u!1 &7088441462300034138
 GameObject:
   m_ObjectHideFlags: 0
