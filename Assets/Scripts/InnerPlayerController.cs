@@ -1,7 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class InnerPlayerController : MonoBehaviour
 {
+    [SerializeField]
+    private Transform startingPos;
     public int maxHealth = 10;
     private int currentHealth;
 
@@ -12,6 +15,8 @@ public class InnerPlayerController : MonoBehaviour
     private GameObject bullet;
     [SerializeField]
     private GameObject eggBullet;
+
+    
 
     [SerializeField]
     private AudioClip gunshot;
@@ -26,6 +31,9 @@ public class InnerPlayerController : MonoBehaviour
 
     [SerializeField]
     AudioSource audioSource;
+
+    [SerializeField]
+    private InnerHudController hud;
 
     [SerializeField]
     [Tooltip("Amount of time in seconds before each shot")]
@@ -50,6 +58,8 @@ public class InnerPlayerController : MonoBehaviour
         currentHealth = maxHealth;
         currentBullets = maxBullets;
         timeSinceLastShot = 0f;
+        transform.position = startingPos.position;
+        transform.rotation = startingPos.rotation;
         if (GameManager.Instance.Birdiness < 1)
         {
             animator.Play("gun_start_ui");
@@ -62,6 +72,10 @@ public class InnerPlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(Die());
+        }
         if (!GameManager.Instance.IsTabbedOut)
         {
             CheckForShooting();
@@ -71,6 +85,11 @@ public class InnerPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             GameManager.Instance.Birdiness++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            currentHealth = 0;
         }
 
         directionLooking = playerCam.transform.forward;
@@ -148,13 +167,28 @@ public class InnerPlayerController : MonoBehaviour
         //remove bullet
         currentBullets--;
         timeSinceLastShot = 0f;
-        
-       
+
+
+
     }
 
 
     //interaction controls (press e when next to and looking at interactable object)
     //collect
 
-    
+    private void UpdateDisplay()
+    {
+        hud.updateAmmo(currentBullets, maxBullets);
+        hud.updateHealth(currentHealth, maxHealth);
+    }
+
+     IEnumerator Die()
+     {
+       // hud.DisplayDeathcard();
+        
+
+        yield return new WaitForSeconds(3f);
+        ResetPlayer();
+        //hud.HideDeathcard();
+     }
 }
