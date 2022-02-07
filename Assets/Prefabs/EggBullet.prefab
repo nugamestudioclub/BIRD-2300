@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5557372121343324932}
   - component: {fileID: 8712472886234369908}
   - component: {fileID: 6345582128365636230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EggBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8841323840324089953}
   - component: {fileID: 3818148271546498154}
   - component: {fileID: 2273448793193026439}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

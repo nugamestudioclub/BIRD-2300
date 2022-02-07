@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 	void Awake()
     {
         Instance = this;
-		TabIn();
+		TabOut();
     }
 
     void Update()
