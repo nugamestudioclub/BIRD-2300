@@ -24,7 +24,7 @@ public class OutsideGameManager : MonoBehaviour
     [SerializeField]
     private Text dialogText;
     private Button dialogTextButton;
-    private string pname;
+    private string pname="";
     private bool isAttentive = true;
 
     public Image loginpage;
@@ -64,6 +64,9 @@ public class OutsideGameManager : MonoBehaviour
     [SerializeField]
     private int numberOfQuestions = 7;
 
+    private bool finished;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +90,7 @@ public class OutsideGameManager : MonoBehaviour
     void SubmitName()
     {
         this.pname = this.nameInput.text;
-        this.name = this.nameInput.text;
+        
         this.loginpage.gameObject.SetActive(false);
         dialogManager.StartEvents();
     }
@@ -247,6 +250,7 @@ public class OutsideGameManager : MonoBehaviour
         
         if (text.Contains("{MC}"))
         {
+            this.finished = false;
             this.submittedText = false;
             this.submittedStupid = false;
             string txt = text;
@@ -306,8 +310,14 @@ public class OutsideGameManager : MonoBehaviour
         {
             this.grade -= 10f;
             this.Say("Teacher: Incorrect, please pay attention to the class in the future!");
+            
         }
+        submittedText = true;
+        submittedStupid = true;
+
+        finished = true;
         submittedText = false;
+        submittedStupid = false;
         this.timerTxt.gameObject.SetActive(false);
         this.timer = this.timer_def;
 
@@ -322,6 +332,7 @@ public class OutsideGameManager : MonoBehaviour
         
         
     }
+   
 
     IEnumerator ResetText()
     {
@@ -337,6 +348,10 @@ public class OutsideGameManager : MonoBehaviour
     public bool hasSubmitted()
     {
         return this.submittedText||this.submittedStupid;
+    }
+    public bool hasFinished()
+    {
+        return this.finished;
     }
 
     public void SendFinalScore(string score)

@@ -52,7 +52,7 @@ public class DialogManager : MonoBehaviour
     //Say random event between 15 to 30 seconds.
     IEnumerator WaitForNextEvent()
     {
-        float dur = Random.Range(20, 30);
+        float dur = Random.Range(20,30);
         yield return new WaitForSeconds(dur);
         int choice = Random.Range(1, this.eventOptions.Length);
         
@@ -64,6 +64,11 @@ public class DialogManager : MonoBehaviour
     void Update()
     {
         if (manager.hasSubmitted()&&waitingOnSubmit)
+        {
+            waitingOnSubmit = false;
+            StartCoroutine(WaitForNextEvent());
+        }
+        if (manager.hasFinished() && waitingOnSubmit&&!manager.hasSubmitted())
         {
             waitingOnSubmit = false;
             StartCoroutine(WaitForNextEvent());
