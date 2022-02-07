@@ -27,10 +27,18 @@ public class InnerHudController : MonoBehaviour
     public void DisplayDeathcard()
     {
         deathcard.color = new Color(deathcard.color.r, deathcard.color.g, deathcard.color.b, 1);
+        Debug.Log($"Displaying deathcard wirh color RGBA({deathcard.color.r}, " +
+            $"{deathcard.color.g}, " +
+            $"{deathcard.color.b}," +
+            $" {deathcard.color.a})");
     }
 
     public void HideDeathcard()
     {
         deathcard.color = new Color(deathcard.color.r, deathcard.color.g, deathcard.color.b, 0);
+        Debug.Log($"Hiding deathcard wirh color RGBA({deathcard.color.r}, " +
+            $"{deathcard.color.g}, " +
+            $"{deathcard.color.b}," +
+            $" {deathcard.color.a})");
     }
 }

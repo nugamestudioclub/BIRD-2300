@@ -12,6 +12,8 @@ public class BulletController : MonoBehaviour
     private float currentExplosionTime;
 
     private Rigidbody rigidbody;
+    private SphereCollider collider;
+    private float startingColliderRad;
     private Animator animator;
 
     [SerializeField]
@@ -31,6 +33,8 @@ public class BulletController : MonoBehaviour
         currentLifetime = 0;
         currentExplosionTime = 0f;
         rigidbody = GetComponent<Rigidbody>();
+        collider = GetComponent<SphereCollider>();
+        startingColliderRad = collider.radius;
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -39,6 +43,7 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (isExploding)
         {
             rigidbody.velocity = Vector3.zero;
@@ -50,6 +55,13 @@ public class BulletController : MonoBehaviour
             rigidbody.velocity = direction * speed;
         }
         currentLifetime += Time.deltaTime;
+        if (currentLifetime < .1f)
+        {
+            collider.radius = startingColliderRad * 1.3f;
+        } else
+        {
+            collider.radius = startingColliderRad;
+        }
         if (currentLifetime > lifetime || currentExplosionTime > explosionTime)
         {
             Destroy(gameObject);
@@ -65,10 +77,13 @@ public class BulletController : MonoBehaviour
             {
                 //deal dmg to enemy
                 enemy.TakeDamage(damage);
+                Explode();
+            } else if (currentLifetime > .1f)
+            {
+                collider.radius = startingColliderRad * 1.3f;
+                Explode();
             }
 
-            //no matter what destroy me
-            Explode();
         }
        
     }

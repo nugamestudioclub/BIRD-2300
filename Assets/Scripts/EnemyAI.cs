@@ -13,7 +13,8 @@ public class EnemyAI : MonoBehaviour {
 	private int maxHealth = 10;
 	private int _currentHealth;
 
-	private bool isDying = false;
+	[HideInInspector]
+	public bool isDying = false;
 	[SerializeField]
 	private float deathtime = 1.5f;
 	private float _currentDeathtime;

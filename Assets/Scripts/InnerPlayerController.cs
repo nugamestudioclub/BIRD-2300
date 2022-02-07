@@ -7,6 +7,11 @@ public class InnerPlayerController : MonoBehaviour
     private Transform startingPos;
     public int maxHealth = 10;
     private int currentHealth;
+    private bool dying;
+
+    [SerializeField]
+    private float invincibilityTime = 1f;
+    private float lastTimeHurt;
 
     public int maxBullets = 6;
     private int currentBullets;
@@ -68,13 +73,14 @@ public class InnerPlayerController : MonoBehaviour
             animator.Play("bird_start_ui");
         }
         UpdateDisplay();
+        dying = false;
 
 
     }
 
     private void Update()
     {
-        if (currentHealth <= 0)
+        if (!dying && currentHealth <= 0)
         {
             StartCoroutine(Die());
         }
@@ -88,6 +94,7 @@ public class InnerPlayerController : MonoBehaviour
         directionLooking = playerCam.transform.forward;
 
         timeSinceLastShot += Time.deltaTime;
+        lastTimeHurt += Time.deltaTime;
     }
 
     private void CheckForShooting()
@@ -152,7 +159,7 @@ public class InnerPlayerController : MonoBehaviour
             animator.Play("bird_shoot_ui");
             audioSource.PlayOneShot(birdshot);
         }
-        GameObject spawned = Instantiate(currentBullet, transform.position + directionLooking * 2, Quaternion.identity);
+        GameObject spawned = Instantiate(currentBullet, transform.position + directionLooking * 1.75f, Quaternion.identity);
         //set bullet movement direction (diretion of cam facing)
         if (spawned.TryGetComponent(out BulletController controller))
         {
@@ -179,6 +186,7 @@ public class InnerPlayerController : MonoBehaviour
 
      IEnumerator Die()
      {
+        dying = true;
         hud.DisplayDeathcard();
         
 
@@ -186,4 +194,26 @@ public class InnerPlayerController : MonoBehaviour
         ResetPlayer();
         hud.HideDeathcard();
      }
+
+    private void OnTriggerStay(Collider other)
+    {
+        //if not in invincibility and colliding with enemy
+        if (lastTimeHurt > invincibilityTime && other.TryGetComponent(out EnemyAI enemy))
+        {
+            if (!enemy.isDying)
+            {
+                TakeDamage(2);
+            }
+
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        //take dmg from enemy
+        currentHealth -= damage;
+        UpdateDisplay();
+        lastTimeHurt = 0f;
+        //play sound effect
+    }
 }
