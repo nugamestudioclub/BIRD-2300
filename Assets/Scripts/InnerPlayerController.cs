@@ -84,15 +84,6 @@ public class InnerPlayerController : MonoBehaviour
             CheckForReload();
         }
        
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            GameManager.Instance.Birdiness++;
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            currentHealth = 0;
-        }
 
         directionLooking = playerCam.transform.forward;
 
