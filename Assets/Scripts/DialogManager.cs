@@ -57,6 +57,7 @@ public class DialogManager : MonoBehaviour
         int choice = Random.Range(1, this.eventOptions.Length);
         
         manager.Say(this.eventOptions[choice]);
+        manager.IterateQuestionCounter();
         this.waitingOnSubmit = true;
     }
     // Update is called once per frame

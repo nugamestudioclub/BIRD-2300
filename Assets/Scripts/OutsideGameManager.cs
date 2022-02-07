@@ -58,7 +58,9 @@ public class OutsideGameManager : MonoBehaviour
 
     [SerializeField]
     private string endingScene = "Ending Scene";
-    
+
+    [SerializeField]
+    private int numberOfQuestions = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -261,7 +263,7 @@ public class OutsideGameManager : MonoBehaviour
         }
 
     }
-
+    
 
     /// <summary>
     /// Used to submit a response to question.
@@ -309,8 +311,18 @@ public class OutsideGameManager : MonoBehaviour
         submittedText = false;
         this.timerTxt.gameObject.SetActive(false);
         this.timer = this.timer_def;
+
+        if (this.numberOfQuestions<=0)
+        {
+            
+        }
         
         
+    }
+
+    public void IterateQuestionCounter()
+    {
+        this.numberOfQuestions -= 1;
     }
 
     public bool hasSubmitted()
