@@ -188,11 +188,11 @@ public class InnerPlayerController : MonoBehaviour
 
      IEnumerator Die()
      {
-       // hud.DisplayDeathcard();
+        hud.DisplayDeathcard();
         
 
         yield return new WaitForSeconds(3f);
         ResetPlayer();
-        //hud.HideDeathcard();
+        hud.HideDeathcard();
      }
 }
