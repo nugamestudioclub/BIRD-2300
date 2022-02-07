@@ -18,6 +18,9 @@ public class EnemyAI : MonoBehaviour {
 	private float deathtime = 1.5f;
 	private float _currentDeathtime;
 
+	[SerializeField]
+	Bark bark;
+
 	void Start() {
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponentInChildren<Animator>();
@@ -64,7 +67,7 @@ public class EnemyAI : MonoBehaviour {
 		//play death animation
 		animator.Play("dying");
 		//play death sound
-
+		bark.Die();
 		//start dying
 		isDying = true;
     }
