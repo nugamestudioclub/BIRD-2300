@@ -58,16 +58,19 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-
-        //if colliding with enemy
-        if (collision.TryGetComponent(out EnemyAI enemy))
+        if (!collision.CompareTag("Sky"))
         {
-            //deal dmg to enemy
-            enemy.TakeDamage(damage);
-        }
+            //if colliding with enemy
+            if (collision.TryGetComponent(out EnemyAI enemy))
+            {
+                //deal dmg to enemy
+                enemy.TakeDamage(damage);
+            }
 
-        //no matter what destroy me
-        Explode();
+            //no matter what destroy me
+            Explode();
+        }
+       
     }
 
     private void Explode()
