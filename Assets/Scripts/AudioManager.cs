@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour {
 
 	// remove hack when better option is available
 	void Start() {
-		FocusOnGame();
+		//FocusOnGame();
 	}
 
 	// remove hack when better option is available
