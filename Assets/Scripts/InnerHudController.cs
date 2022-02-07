@@ -16,12 +16,12 @@ public class InnerHudController : MonoBehaviour
 
     public void updateHealth(int current, int total)
     {
-        healthDisplay.text = $"{current} / {total}";
+        healthDisplay.text = $"HEALTH: {current} / {total}";
     }
 
     public void updateAmmo(int current, int total)
     {
-        ammoDisplay.text = $"{current} / {total}";
+        ammoDisplay.text = $"AMMO: {current} / {total}";
     }
 
     public void DisplayDeathcard()
