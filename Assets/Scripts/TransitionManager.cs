@@ -1,22 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TransitionManager : MonoBehaviour
+public class TransitionManager:MonoBehaviour
 {
 
 
-    public void ToGame()
+    public static void ToGame()
     {
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
 
-    public void ToCredits()
+    public static void ToCredits()
     {
         SceneManager.LoadScene("EndingScene", LoadSceneMode.Single);
     }
 
 
-    public void QuitGame()
+    public static void QuitGame()
     {
         Application.Quit();
     }

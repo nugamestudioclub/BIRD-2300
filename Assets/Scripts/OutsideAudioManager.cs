@@ -60,6 +60,9 @@ public class OutsideAudioManager : MonoBehaviour
         this.notificationSource.Play();
 
     }
+
+    
+
 }
 
 public enum NotificationType {NEWITEM, CORRECT,INCORRECT,QUSTION};

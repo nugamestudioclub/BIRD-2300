@@ -126,6 +126,11 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	public int GetLetterGrade()
+    {
+		return this.grade;
+    }
+
 	public int Grade { get; set; }
 
 	public int Birdiness { get; set; }

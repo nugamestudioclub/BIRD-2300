@@ -10,6 +10,8 @@ public class OutsideGameManager : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private Animator cam;
+    [SerializeField]
+    private Animator exitAnim;
     
     private bool animRunning = false;
     private bool notebookOpen = false;
@@ -68,11 +70,7 @@ public class OutsideGameManager : MonoBehaviour
         notebookNotify.onClick.AddListener(OpenNotebook);
         Text txt = notebookNotify.GetComponent<Text>();
         txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 0f);
-        name = PlayerPrefs.GetString("name");
-        if (name.Length == 0)
-        {
-            name = "Seb";
-        }
+        
         dialogTextButton = dialogText.gameObject.GetComponent<Button>();
         dialogTextButton.onClick.AddListener(Attentive);
         this.dialogTextButton.interactable = false;
@@ -89,6 +87,7 @@ public class OutsideGameManager : MonoBehaviour
     void SubmitName()
     {
         this.pname = this.nameInput.text;
+        this.name = this.nameInput.text;
         this.loginpage.gameObject.SetActive(false);
         dialogManager.StartEvents();
     }
@@ -251,7 +250,7 @@ public class OutsideGameManager : MonoBehaviour
             this.submittedText = false;
             this.submittedStupid = false;
             string txt = text;
-            txt = txt.Replace("{MC}", "<color=yellow>" + name + "</color>");
+            txt = txt.Replace("{MC}", "<color=yellow>" + pname + "</color>");
             this.dialogTextButton.interactable = true;
             this.dialogText.text = txt;
             StartCoroutine(RunResponseTimer());
@@ -314,10 +313,20 @@ public class OutsideGameManager : MonoBehaviour
 
         if (this.numberOfQuestions<=0)
         {
-            
+            this.EndGame(3);
+        }
+        else
+        {
+            StartCoroutine(ResetText());
         }
         
         
+    }
+
+    IEnumerator ResetText()
+    {
+        yield return new WaitForSeconds(3);
+        this.dialogText.text = "...";
     }
 
     public void IterateQuestionCounter()
@@ -338,15 +347,41 @@ public class OutsideGameManager : MonoBehaviour
 
     public void EndGame(float transitionOffset)
     {
-        if (PlayerPrefs.GetString("score").Length == 0)
+        int gameScore = GameManager.Instance.GetLetterGrade();
+        int thisScore = Mathf.RoundToInt(this.grade);
+        int finalScore = (thisScore + gameScore) / 2;
+        string l_score = "A";
+        if (finalScore >= 90)
         {
-            PlayerPrefs.SetString("score", "F");
+            l_score = "A";
+
         }
+        else if (finalScore >= 80)
+        {
+            l_score = "B";
+        }
+        else if(finalScore >= 70)
+        {
+            l_score = "C";
+        }
+        else if (finalScore >= 60)
+        {
+            l_score = "D";
+        }
+        else 
+        {
+            l_score = "F";
+        }
+        PlayerPrefs.SetString("score", l_score);
+
         StartCoroutine(delayEnd(transitionOffset));
     }
     private IEnumerator delayEnd(float offset)
     {
+        exitAnim.Play("ExitAnim");
+        
         yield return new WaitForSeconds(offset);
-        SceneManager.LoadScene(endingScene);
+        GameManager.Instance.TabOut();
+        TransitionManager.ToCredits();
     }
 }
