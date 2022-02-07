@@ -67,7 +67,9 @@ public class InnerPlayerController : MonoBehaviour
         {
             animator.Play("bird_start_ui");
         }
-        
+        UpdateDisplay();
+
+
     }
 
     private void Update()
@@ -105,6 +107,7 @@ public class InnerPlayerController : MonoBehaviour
             if (currentBullets >= 1)
             {
                 Shoot();
+                UpdateDisplay();
             } else
             {
                 Debug.Log("Out of Ammo");
@@ -121,6 +124,7 @@ public class InnerPlayerController : MonoBehaviour
             Debug.Log("Reloading...");
             //refill bullets
             currentBullets = maxBullets;
+            UpdateDisplay();
             //play animation 
             if (GameManager.Instance.Birdiness < 1)
             {
