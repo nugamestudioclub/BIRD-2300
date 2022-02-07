@@ -19,6 +19,9 @@ public class BulletController : MonoBehaviour
     [SerializeField]
     private int damage = 5;
 
+    [SerializeField]
+    private AudioSource audioSource;
+
     public Vector3 direction;
 
     private bool isExploding = false;
@@ -73,7 +76,7 @@ public class BulletController : MonoBehaviour
         //play explosion animation
         animator.Play("explode");
         //play explosion sound
-
+        audioSource.Play();
         //start exploding
         isExploding = true;
 
