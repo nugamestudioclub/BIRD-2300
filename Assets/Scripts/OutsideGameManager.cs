@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OutsideGameManager : MonoBehaviour
 {
@@ -55,6 +56,8 @@ public class OutsideGameManager : MonoBehaviour
     
     private bool[] objectivesObtained = new bool[] { false, false, false };
 
+    [SerializeField]
+    private string endingScene = "Ending Scene";
     
 
     // Start is called before the first frame update
@@ -313,5 +316,25 @@ public class OutsideGameManager : MonoBehaviour
     public bool hasSubmitted()
     {
         return this.submittedText||this.submittedStupid;
+    }
+
+    public void SendFinalScore(string score)
+    {
+        PlayerPrefs.SetString("score", score);
+
+    }
+
+    public void EndGame(float transitionOffset)
+    {
+        if (PlayerPrefs.GetString("score").Length == 0)
+        {
+            PlayerPrefs.SetString("score", "F");
+        }
+        StartCoroutine(delayEnd(transitionOffset));
+    }
+    private IEnumerator delayEnd(float offset)
+    {
+        yield return new WaitForSeconds(offset);
+        SceneManager.LoadScene(endingScene);
     }
 }
