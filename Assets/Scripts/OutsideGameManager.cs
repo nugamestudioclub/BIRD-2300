@@ -31,7 +31,6 @@ public class OutsideGameManager : MonoBehaviour
     public Button nameSubmit;
     public InputField nameInput;
 
-    public float grade = 100;
     private bool submittedText = false;
     private bool timerRunning = false;
    
@@ -283,7 +282,11 @@ public class OutsideGameManager : MonoBehaviour
             }
             this.timerTxt.gameObject.SetActive(false);
             if (!submittedStupid)
+            {
                 this.Say("Teacher: Correct!");
+                GameManager.Instance.Birdiness++;
+            }
+                
             else
                 this.Say("Teacher: Correct! I guess. You should put that fact on your resume!");
         }
@@ -308,7 +311,7 @@ public class OutsideGameManager : MonoBehaviour
         }
         else
         {
-            this.grade -= 10f;
+            GameManager.Instance.AdjustGrade(-5);
             this.Say("Teacher: Incorrect, please pay attention to the class in the future!");
             
         }
@@ -362,32 +365,7 @@ public class OutsideGameManager : MonoBehaviour
 
     public void EndGame(float transitionOffset)
     {
-        int gameScore = GameManager.Instance.GetLetterGrade();
-        int thisScore = Mathf.RoundToInt(this.grade);
-        int finalScore = (thisScore + gameScore) / 2;
-        string l_score = "A";
-        if (finalScore >= 90)
-        {
-            l_score = "A";
-
-        }
-        else if (finalScore >= 80)
-        {
-            l_score = "B";
-        }
-        else if(finalScore >= 70)
-        {
-            l_score = "C";
-        }
-        else if (finalScore >= 60)
-        {
-            l_score = "D";
-        }
-        else 
-        {
-            l_score = "F";
-        }
-        PlayerPrefs.SetString("score", l_score);
+        PlayerPrefs.SetString("score", GameManager.Instance.LetterGrade);
 
         StartCoroutine(delayEnd(transitionOffset));
     }

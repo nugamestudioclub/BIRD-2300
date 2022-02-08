@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour
 	
     public static GameManager Instance { get; private set; }
 
-
-    public bool IsTabbedOut { get; private set; }
+	public bool IsTabbedOut { get; private set; }
 
 	[SerializeField]
 	private notebook notebook;
@@ -91,14 +90,19 @@ public class GameManager : MonoBehaviour
 		//debugging
 		if (Input.GetKeyDown(KeyCode.B))
         {
-			Birdiness++;
+			//Birdiness++;
         }
         if (Input.GetKeyDown(KeyCode.Tab))
             ToggleTab();
     }
 
-	private int grade;
+	[SerializeField]
+	private int grade = 100;
 
+	public void AdjustGrade(int delta)
+    {
+		grade += delta;
+    }
 	public string LetterGrade
 	{
 		get
@@ -130,13 +134,6 @@ public class GameManager : MonoBehaviour
 			return "F";
 		}
 	}
-
-	public int GetLetterGrade()
-    {
-		return this.grade;
-    }
-
-	public int Grade { get; set; }
 
 	public int Birdiness { get; set; }
 }

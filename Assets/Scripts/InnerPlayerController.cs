@@ -21,7 +21,7 @@ public class InnerPlayerController : MonoBehaviour
     [SerializeField]
     private GameObject eggBullet;
 
-    
+
 
     [SerializeField]
     private AudioClip gunshot;
@@ -53,6 +53,9 @@ public class InnerPlayerController : MonoBehaviour
 
     public Animator animator;
 
+    private bool hitBirdmode = false;
+    private int birdThreshhold = 2;
+
     private void Start()
     {
         ResetPlayer();
@@ -65,10 +68,11 @@ public class InnerPlayerController : MonoBehaviour
         timeSinceLastShot = 0f;
         transform.position = startingPos.position;
         transform.rotation = startingPos.rotation;
-        if (GameManager.Instance.Birdiness < 1)
+        if (!hitBirdmode)
         {
             animator.Play("gun_start_ui");
-        } else
+        }
+        else
         {
             animator.Play("bird_start_ui");
         }
@@ -80,6 +84,12 @@ public class InnerPlayerController : MonoBehaviour
 
     private void Update()
     {
+
+        if (!hitBirdmode && !(GameManager.Instance.Birdiness < birdThreshhold))
+        {
+            hitBirdmode = true;
+            animator.Play("bird_idle_ui");
+        }
         if (!dying && currentHealth <= 0)
         {
             StartCoroutine(Die());
@@ -89,7 +99,7 @@ public class InnerPlayerController : MonoBehaviour
             CheckForShooting();
             CheckForReload();
         }
-       
+
 
         directionLooking = playerCam.transform.forward;
 
@@ -106,11 +116,12 @@ public class InnerPlayerController : MonoBehaviour
             {
                 Shoot();
                 UpdateDisplay();
-            } else
+            }
+            else
             {
                 Debug.Log("Out of Ammo");
             }
-            
+
         }
     }
 
@@ -124,7 +135,7 @@ public class InnerPlayerController : MonoBehaviour
             currentBullets = maxBullets;
             UpdateDisplay();
             //play animation 
-            if (GameManager.Instance.Birdiness < 2)
+            if (!hitBirdmode)
             {
                 animator.Play("gun_reload_ui");
                 audioSource.PlayOneShot(gunReload);
@@ -147,7 +158,7 @@ public class InnerPlayerController : MonoBehaviour
         GameObject currentBullet;
 
         //play animation
-        if (GameManager.Instance.Birdiness < 1)
+        if (!hitBirdmode)
         {
             currentBullet = bullet;
             animator.Play("gun_shoot_ui");
@@ -165,7 +176,7 @@ public class InnerPlayerController : MonoBehaviour
         {
             controller.direction = directionLooking;
         }
-            
+
         //remove bullet
         currentBullets--;
         timeSinceLastShot = 0f;
@@ -184,16 +195,17 @@ public class InnerPlayerController : MonoBehaviour
         hud.updateHealth(currentHealth, maxHealth);
     }
 
-     IEnumerator Die()
-     {
+    IEnumerator Die()
+    {
         dying = true;
+        GameManager.Instance.AdjustGrade(-2);
         StartCoroutine(hud.DisplayDeathcard());
-        
+
 
         yield return new WaitForSeconds(3f);
         ResetPlayer();
         StartCoroutine(hud.HideDeathcard());
-     }
+    }
 
     private void OnTriggerStay(Collider other)
     {

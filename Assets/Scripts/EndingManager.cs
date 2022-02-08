@@ -22,18 +22,28 @@ public class EndingManager : MonoBehaviour
         Color finalColor;
         switch (score)
         {
+            case "S":
+                finalColor = Color.blue;
+                break;
             case "A":
+            case "A+":
+            case "A-":
                 finalColor = Color.green;
                 break;
             case "B":
+            case "B+":
+            case "B-":
                 finalColor = new Color(102, 255, 0);
                 break;
             case "C":
+            case "C+":
+            case "C-":
                 finalColor = Color.yellow;
                 break;
             case "D":
+            case "D+":
+            case "D-":
                 finalColor = new Color(255, 89, 0);
- 
                 break;
             default:
                 finalColor = Color.red;
