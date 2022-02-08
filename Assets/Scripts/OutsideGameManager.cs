@@ -67,7 +67,7 @@ public class OutsideGameManager : MonoBehaviour {
 
 	// Start is called before the first frame update
 	void Start() {
-		notebookNotify.onClick.AddListener(OpenNotebook);
+		notebookNotify.onClick.AddListener(ToggleNotebook);
 		Text txt = notebookNotify.GetComponent<Text>();
 		txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 0f);
 
@@ -151,21 +151,21 @@ public class OutsideGameManager : MonoBehaviour {
 
 			if( Physics.Raycast(ray, out hit) ) {
 				Transform objectHit = hit.transform;
-				if( objectHit.CompareTag("Notebook") ) {
-					if( !notebookOpen )
-						OpenNotebook();
-					else
-						CloseNotebook();
-				}
+				if( objectHit.CompareTag("Notebook") )
+					ToggleNotebook();
 				// Do something with the object that was hit by the raycast.
 			}
 		}
+	}
 
-
+	public void ToggleNotebook() {
+		if( !notebookOpen )
+			StartCoroutine(OpenNotebook());
+		else
+			StartCoroutine(CloseNotebook());
 	}
 
 	public IEnumerator Tab() {
-
 		if( !animRunning ) {
 			{
 				if( this.isAttentive ) {
@@ -177,7 +177,6 @@ public class OutsideGameManager : MonoBehaviour {
 					yield return StartCoroutine(WaitForAnimationOver());
 				}
 			}
-
 			if( this.timerRunning ) {
 				this.timer -= Time.deltaTime;
 				timerTxt.text = ((int)this.timer).ToString() + " seconds";
@@ -185,31 +184,28 @@ public class OutsideGameManager : MonoBehaviour {
 		}
 	}
 
-	public void OpenNotebook() {
+	public IEnumerator OpenNotebook() {
 		print("opening");
+		GameManager.Instance.CanInteract = false;
 		if( !animRunning ) {
 			if( !notebookOpen ) {
 				anim.Play("Show");
 				notebookOpen = !notebookOpen;
-				StartCoroutine(WaitForAnimationOver());
+				yield return StartCoroutine(WaitForAnimationOver());
 			}
-
-
 		}
+		GameManager.Instance.CanInteract = true;
 	}
-	private void CloseNotebook() {
-
+	private IEnumerator CloseNotebook() {
+		GameManager.Instance.CanInteract = false;
 		if( !animRunning ) {
-
 			if( notebookOpen ) {
-
 				anim.Play("Hide");
 				notebookOpen = !notebookOpen;
-				StartCoroutine(WaitForAnimationOver());
+				yield return StartCoroutine(WaitForAnimationOver());
 			}
-
-
 		}
+		GameManager.Instance.CanInteract = true;
 	}
 
 	/// <summary>
