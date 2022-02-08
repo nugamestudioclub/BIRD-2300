@@ -234,8 +234,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spotDistance: 10
   maxHealth: 10
+  isDying: 0
   deathtime: 1.5
-  bark: {fileID: 0}
+  bark: {fileID: 6989772526787079328}
 --- !u!114 &6989772526787079328
 MonoBehaviour:
   m_ObjectHideFlags: 0
