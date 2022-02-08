@@ -11,8 +11,12 @@ public class InnerHudController : MonoBehaviour
     private Text healthDisplay;
     [SerializeField]
     private Image deathcard;
+    [SerializeField]
+    private float fadeInTime = 1f;
+    [SerializeField]
+    private float fadeOutTime = .25f;
 
-    
+
 
     public void updateHealth(int current, int total)
     {
@@ -24,18 +28,38 @@ public class InnerHudController : MonoBehaviour
         ammoDisplay.text = $"AMMO: {current} / {total}";
     }
 
-    public void DisplayDeathcard()
+    public IEnumerator DisplayDeathcard() //make cooroutine
     {
-        deathcard.color = new Color(deathcard.color.r, deathcard.color.g, deathcard.color.b, 1);
+        Color color = deathcard.color;
+        const float FACTOR = 0.1f;
+
+        for (int alpha = 1; alpha <= 10; ++alpha)
+        {
+            color.a = alpha * FACTOR;
+            deathcard.color = color;
+
+            yield return new WaitForSeconds(fadeInTime * FACTOR);
+        }
+
         Debug.Log($"Displaying deathcard wirh color RGBA({deathcard.color.r}, " +
             $"{deathcard.color.g}, " +
             $"{deathcard.color.b}," +
             $" {deathcard.color.a})");
     }
 
-    public void HideDeathcard()
+    public IEnumerator HideDeathcard() //make cooroutine
     {
-        deathcard.color = new Color(deathcard.color.r, deathcard.color.g, deathcard.color.b, 0);
+        Color color = deathcard.color;
+        const float FACTOR = 0.1f;
+
+        for (int alpha = 9; alpha >= 0; --alpha)
+        {
+            color.a = alpha * FACTOR;
+            deathcard.color = color;
+
+            yield return new WaitForSeconds(fadeOutTime * FACTOR);
+        }
+
         Debug.Log($"Hiding deathcard wirh color RGBA({deathcard.color.r}, " +
             $"{deathcard.color.g}, " +
             $"{deathcard.color.b}," +

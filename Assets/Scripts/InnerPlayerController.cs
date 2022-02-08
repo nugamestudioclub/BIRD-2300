@@ -187,12 +187,12 @@ public class InnerPlayerController : MonoBehaviour
      IEnumerator Die()
      {
         dying = true;
-        hud.DisplayDeathcard();
+        StartCoroutine(hud.DisplayDeathcard());
         
 
         yield return new WaitForSeconds(3f);
         ResetPlayer();
-        hud.HideDeathcard();
+        StartCoroutine(hud.HideDeathcard());
      }
 
     private void OnTriggerStay(Collider other)

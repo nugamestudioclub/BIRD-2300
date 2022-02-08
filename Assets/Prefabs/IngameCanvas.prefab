@@ -198,6 +198,8 @@ MonoBehaviour:
   ammoDisplay: {fileID: 2713382906617203383}
   healthDisplay: {fileID: 2840344165625733966}
   deathcard: {fileID: 5918246125933047397}
+  fadeInTime: 1
+  fadeOutTime: 0.25
 --- !u!1 &3732750068172457901
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +401,7 @@ RectTransform:
   m_GameObject: {fileID: 8499201038654963554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
   m_Children: []
   m_Father: {fileID: 1449983684673485301}
   m_RootOrder: 3
