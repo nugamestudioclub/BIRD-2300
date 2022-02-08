@@ -39,13 +39,6 @@ public class AudioClipManager : MonoBehaviour {
 	}
 
 	public void Muffle() {
-		Debug.Log(nameof(Muffle));
-		Debug.Log(audioSource == null);
-		try {
-			Volume *= 1.0f - muffle;
-		}
-		catch( System.Exception ex) {
-			Debug.Log(ex.Message);
-		}
+		Volume *= 1.0f - muffle;
 	}
 }

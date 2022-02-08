@@ -39,12 +39,8 @@ public class AudioManager : MonoBehaviour {
 		outerMusic.Muffle();
 		innerAmbiance.Boost();
 		innerMusic.Boost();
-
-		DebugClip(outerAmbiance);
-		DebugClip(outerMusic);
-		DebugClip(innerAmbiance);
-		DebugClip(innerMusic);
 	}
+
 	public void FocusOut() {
 		isIn = false;
 		outerAmbiance.Boost();
@@ -53,14 +49,5 @@ public class AudioManager : MonoBehaviour {
 		innerMusic.Muffle();
 		if( !crows.IsPlaying && GameManager.Instance.Birdiness >= 1 )
 			crows.Play();
-
-		DebugClip(outerAmbiance);
-		DebugClip(outerMusic);
-		DebugClip(innerAmbiance);
-		DebugClip(innerMusic);
-	}
-
-	private void DebugClip(AudioClipManager clip) {
-		Debug.Log($"{clip.Name}: {clip.IsPlaying}, {clip.Volume}");
 	}
 }
