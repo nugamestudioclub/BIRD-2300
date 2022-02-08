@@ -124,7 +124,7 @@ public class InnerPlayerController : MonoBehaviour
             currentBullets = maxBullets;
             UpdateDisplay();
             //play animation 
-            if (GameManager.Instance.Birdiness < 1)
+            if (GameManager.Instance.Birdiness < 2)
             {
                 animator.Play("gun_reload_ui");
                 audioSource.PlayOneShot(gunReload);

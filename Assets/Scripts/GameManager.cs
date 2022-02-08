@@ -88,6 +88,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+		//debugging
+		if (Input.GetKeyDown(KeyCode.B))
+        {
+			Birdiness++;
+        }
         if (Input.GetKeyDown(KeyCode.Tab))
             ToggleTab();
     }
