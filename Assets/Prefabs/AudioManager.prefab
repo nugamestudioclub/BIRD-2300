@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1114025634102736678}
   m_Layer: 0
-  m_Name: Both
+  m_Name: Global
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,10 +250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f3b08ad359cb441adcfa349b533340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outerAmbiance: {fileID: 1743251036547048208}
-  outerMusic: {fileID: 3135717605365980344}
-  innerAmbiance: {fileID: 6745500391467137953}
-  innerMusic: {fileID: 4348895169491158806}
+  innerAudio:
+  - {fileID: 6745500391467137953}
+  - {fileID: 4348895169491158806}
+  outerAudio:
+  - {fileID: 1743251036547048208}
+  - {fileID: 3135717605365980344}
   crows: {fileID: 5535547843575061763}
 --- !u!1 &6530215869440893145
 GameObject:

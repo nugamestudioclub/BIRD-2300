@@ -1,37 +1,28 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour {
 	[SerializeField]
-	private AudioClipManager outerAmbiance;
+	List<AudioClipManager> innerAudio;
 
 	[SerializeField]
-	private AudioClipManager outerMusic;
-
-	[SerializeField]
-	private AudioClipManager innerAmbiance;
-
-	[SerializeField]
-	private AudioClipManager innerMusic;
+	List<AudioClipManager> outerAudio;
 
 	[SerializeField]
 	private AudioClipManager crows;
 
-	private bool isIn;
-
 	public void FocusIn() {
-		isIn = true;
-		outerAmbiance.Muffle();
-		outerMusic.Muffle();
-		innerAmbiance.Boost();
-		innerMusic.Boost();
+		foreach( var audio in innerAudio )
+			audio.Boost();
+		foreach( var audio in outerAudio )
+			audio.Muffle();
 	}
 
 	public void FocusOut() {
-		isIn = false;
-		outerAmbiance.Boost();
-		outerMusic.Boost();
-		innerAmbiance.Muffle();
-		innerMusic.Muffle();
+		foreach( var audio in innerAudio )
+			audio.Muffle();
+		foreach( var audio in outerAudio )
+			audio.Boost();
 		if( !crows.IsPlaying && GameManager.Instance.Birdiness >= 1 )
 			crows.Play();
 	}
