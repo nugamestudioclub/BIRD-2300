@@ -87,10 +87,13 @@ public class GameManager : MonoBehaviour
 	void Awake()
     {
         Instance = this;
-		TabOut();
     }
 
-    void Update()
+	void Start() {
+		TabOut();
+	}
+
+	void Update()
     {
 		//debugging
 		if (Input.GetKeyDown(KeyCode.B))

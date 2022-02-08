@@ -18,10 +18,6 @@ public class AudioManager : MonoBehaviour {
 
 	private bool isIn;
 
-	void Start() {
-		FocusOut();
-	}
-
 	public void FocusIn() {
 		isIn = true;
 		outerAmbiance.Muffle();
