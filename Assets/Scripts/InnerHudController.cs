@@ -8,7 +8,11 @@ public class InnerHudController : MonoBehaviour
     [SerializeField]
     private Text ammoDisplay;
     [SerializeField]
+    private Text ammoDisplaySecondary;
+    [SerializeField]
     private Text healthDisplay;
+    [SerializeField]
+    private Text healthDisplaySecondary;
     [SerializeField]
     private Image deathcard;
     [SerializeField]
@@ -21,11 +25,13 @@ public class InnerHudController : MonoBehaviour
     public void updateHealth(int current, int total)
     {
         healthDisplay.text = $"HEALTH: {current} / {total}";
+        healthDisplaySecondary.text = $"HEALTH: {current} / {total}";
     }
 
     public void updateAmmo(int current, int total)
     {
         ammoDisplay.text = $"AMMO: {current} / {total}";
+        ammoDisplaySecondary.text = $"AMMO: {current} / {total}";
     }
 
     public IEnumerator DisplayDeathcard() //make cooroutine
