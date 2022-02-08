@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
 	private notebook notebook;
 	public notebook Notebook => notebook;
 
+	[SerializeField]
+	AudioManager audioManager;
+
     public void ToggleTab()
     {
 		if (IsTabbedOut) {
@@ -29,6 +32,7 @@ public class GameManager : MonoBehaviour
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
 		IsTabbedOut = true;
+		audioManager.FocusOut();
     }
 
     public void TabIn()
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 		IsTabbedOut = false;
+		audioManager.FocusIn();
     }
 
 	[SerializeField]

@@ -18,21 +18,10 @@ public class AudioManager : MonoBehaviour {
 
 	private bool isIn;
 
-	// remove hack when better option is available
 	void Start() {
 		FocusOut();
 	}
 
-	// remove hack when better option is available
-	void Update() {
-		if( Input.GetKeyDown(KeyCode.Tab) ) {
-			if( isIn )
-				FocusOut();
-			else
-				FocusIn();
-		}
-	}
-	
 	public void FocusIn() {
 		isIn = true;
 		outerAmbiance.Muffle();
