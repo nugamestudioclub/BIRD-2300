@@ -333,6 +333,8 @@ public class OutsideGameManager : MonoBehaviour {
 
 		yield return new WaitForSeconds(offset);
 		GameManager.Instance.TabOut();
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 		TransitionManager.ToCredits();
 	}
 }
