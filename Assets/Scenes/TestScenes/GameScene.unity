@@ -1116,6 +1116,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 355798783}
     m_Modifications:
+    - target: {fileID: 4041023963537323024, guid: f2fef2d36d4935942bb11dc7be8a38d1, type: 3}
+      propertyPath: destroyOnCollect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4041023963537323027, guid: f2fef2d36d4935942bb11dc7be8a38d1, type: 3}
       propertyPath: m_Name
       value: BirdFact (2)
@@ -1126,11 +1130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4041023963537323028, guid: f2fef2d36d4935942bb11dc7be8a38d1, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4041023963537323028, guid: f2fef2d36d4935942bb11dc7be8a38d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.98
+      value: -0.29
       objectReference: {fileID: 0}
     - target: {fileID: 4041023963537323028, guid: f2fef2d36d4935942bb11dc7be8a38d1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1138,7 +1142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4041023963537323028, guid: f2fef2d36d4935942bb11dc7be8a38d1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.82
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 4041023963537323028, guid: f2fef2d36d4935942bb11dc7be8a38d1, type: 3}
       propertyPath: m_LocalRotation.w
