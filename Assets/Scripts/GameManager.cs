@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour {
 		CanInteract = false;
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
-		yield return StartCoroutine(outsideGameManager.Tab());
 		audioManager.FocusOut();
+		yield return StartCoroutine(outsideGameManager.Tab());
 		CanInteract = true;
 		IsTabbedOut = true;
 	}
@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour {
 		CanInteract = false;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-		yield return StartCoroutine(outsideGameManager.Tab());
 		audioManager.FocusIn();
+		yield return StartCoroutine(outsideGameManager.Tab());
 		CanInteract = true;
 		IsTabbedOut = false;
 	}

@@ -35,6 +35,9 @@ public class InnerPlayerController : MonoBehaviour
     private AudioClip birdReload;
 
     [SerializeField]
+    private AudioClip hurt;
+
+    [SerializeField]
     AudioSource audioSource;
 
     [SerializeField]
@@ -227,5 +230,6 @@ public class InnerPlayerController : MonoBehaviour
         UpdateDisplay();
         lastTimeHurt = 0f;
         //play sound effect
+        audioSource.PlayOneShot(hurt);
     }
 }

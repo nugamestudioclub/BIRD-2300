@@ -103,12 +103,13 @@ MonoBehaviour:
   birdshot: {fileID: 8300000, guid: 6cdfa395e75e18d49b14dd3489959944, type: 3}
   gunReload: {fileID: 8300000, guid: b3325146850c4b7418fc986a3f6ebfd5, type: 3}
   birdReload: {fileID: 8300000, guid: 9cc3b982faf291c4d912dcc26e211cd2, type: 3}
+  hurt: {fileID: 8300000, guid: b4a2d7239a4fd3248a33264fe1703244, type: 3}
   audioSource: {fileID: 1172224838139649879}
-  hud: {fileID: 150472593385925749}
+  hud: {fileID: 0}
   fireRate: 0.2
   playerCam: {fileID: 9096584099937550712}
   directionLooking: {x: 0, y: 0, z: 0}
-  animator: {fileID: 5360432768079045373}
+  animator: {fileID: 0}
 --- !u!114 &5291350149475022965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,39 +322,3 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 3772215732473270433, guid: 422c75d6ec6efb44c814b97109c5f8c8, type: 3}
   m_PrefabInstance: {fileID: 5360432769359614425}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3098542138244443483 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7017785365216410754, guid: 422c75d6ec6efb44c814b97109c5f8c8, type: 3}
-  m_PrefabInstance: {fileID: 5360432769359614425}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &150472593385925749 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5220379182558100908, guid: 422c75d6ec6efb44c814b97109c5f8c8, type: 3}
-  m_PrefabInstance: {fileID: 5360432769359614425}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098542138244443483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e088fe2c63bbb4ea51b168e04e2771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &5360432768079045373 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1404842788, guid: 422c75d6ec6efb44c814b97109c5f8c8, type: 3}
-  m_PrefabInstance: {fileID: 5360432769359614425}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5123014376734367276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3098542138244443483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e088fe2c63bbb4ea51b168e04e2771, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoDisplay: {fileID: 0}
-  healthDisplay: {fileID: 0}
-  deathcard: {fileID: 0}
