@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 557907302213582105}
   - component: {fileID: 1378076337732851955}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BeaconSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8708649816544373203}
   - component: {fileID: 5525037111764201441}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 4041023963537323028}
   - component: {fileID: 4041023963537323025}
   - component: {fileID: 4041023963537323024}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BirdFact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,6 +345,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 79a5dce1fc4365f479c52b97827281dc, type: 3}
       propertyPath: m_Name
       value: BirdFactModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79a5dce1fc4365f479c52b97827281dc, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 79a5dce1fc4365f479c52b97827281dc, type: 3}
       propertyPath: m_IsActive

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2709411026976732936}
   - component: {fileID: 4675001956030299892}
   - component: {fileID: 2691987350544897163}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 3875314700457966007}
   - component: {fileID: 3875314700457966006}
   - component: {fileID: 6089254093097194465}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TeacherEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1455295715894254409}
   - component: {fileID: 7133851887022528156}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}

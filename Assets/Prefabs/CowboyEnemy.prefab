@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2709411026976732936}
   - component: {fileID: 4675001956030299892}
   - component: {fileID: 3620129997658901358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 3875314700457966007}
   - component: {fileID: 3875314700457966006}
   - component: {fileID: 6989772526787079328}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CowboyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1084152416284493599}
   - component: {fileID: 8998060769292036813}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
