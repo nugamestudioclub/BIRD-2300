@@ -22,6 +22,13 @@ public class CollectibleItem : MonoBehaviour {
 	[SerializeField]
 	AudioClip collectSound;
 
+	private Collider myCollider;
+
+	private void Awake()
+    {
+		myCollider = GetComponent<Collider>();
+    }
+
 	void OnTriggerEnter(Collider collision) {
 		if( collision.tag == "Player" ) 
 			Collect();
@@ -31,7 +38,10 @@ public class CollectibleItem : MonoBehaviour {
 		GameManager.Instance.Notebook?.createNewEntry();
 		audioSource.PlayOneShot(collectSound);
 		if (destroyOnCollect)
+        {
+			myCollider.enabled = false;
 			isCollected = true;
+		}
 	}
 
 	void Update() {
@@ -39,6 +49,7 @@ public class CollectibleItem : MonoBehaviour {
 			transform.Rotate(0.0f, spinSpeed * Time.deltaTime, 0.0f);
 		if (isCollected)
         {
+
 			collectedTime += Time.deltaTime;
 			if (collectedTime > collectSound.length)
 			{

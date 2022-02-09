@@ -22,14 +22,18 @@ public class EnemyAI : MonoBehaviour {
 	[SerializeField]
 	Bark bark;
 
-	void Start() {
+	private Collider myCollider;
+
+	void Awake() {
 		agent = GetComponent<NavMeshAgent>();
 		animator = GetComponentInChildren<Animator>();
+		myCollider = GetComponent<Collider>();
 		player = GameObject.FindGameObjectWithTag("Player");
 
 		_currentHealth = maxHealth;
 		_currentDeathtime = 0f;
 	}
+
 
 	void Update() {
 		
@@ -65,6 +69,8 @@ public class EnemyAI : MonoBehaviour {
 
 	private void Die()
     {
+		//disable collider
+		myCollider.enabled = false;
 		//play death animation
 		animator.Play("dying");
 		//play death sound
