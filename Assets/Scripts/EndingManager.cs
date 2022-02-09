@@ -17,7 +17,7 @@ public class EndingManager : MonoBehaviour
     {
         string score = PlayerPrefs.GetString(key);
         //testing
-
+  
         letterGrade.text = score;
         Color finalColor;
         switch (score)
@@ -33,7 +33,7 @@ public class EndingManager : MonoBehaviour
             case "B":
             case "B+":
             case "B-":
-                finalColor = new Color(102, 255, 0);
+                finalColor = new Color((float)102/255, (float)255/255, 0);
                 break;
             case "C":
             case "C+":
@@ -43,7 +43,7 @@ public class EndingManager : MonoBehaviour
             case "D":
             case "D+":
             case "D-":
-                finalColor = new Color(255, 89, 0);
+                finalColor = new Color(1, (float)89/255, 0);
                 break;
             default:
                 finalColor = Color.red;
