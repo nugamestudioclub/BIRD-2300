@@ -30,6 +30,9 @@ public class notebook : MonoBehaviour
     public OutsideGameManager dialogManager;
     public TextAsset factsTxt;
 
+    public bool isInteractible { get; set; } = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,9 +109,16 @@ public class notebook : MonoBehaviour
         newBtn.GetComponent<Button>().onClick.AddListener(delegate { this.SubmitTxt(facts[i]); });
         dialogManager.NotifyNoteAdded();
     }
+
+    
+
     private void SubmitTxt(string txt) {
-        this.removeEntry(txt);
-        dialogManager.SubmitText(txt);
+        //print("Conditions:" + GameManager.Instance.CanInteract + ":" + this.isInteractible);
+        if (this.isInteractible)
+        {
+            this.removeEntry(txt);
+            dialogManager.SubmitText(txt);
+        }
     }
     
     public void removeEntry(string name)

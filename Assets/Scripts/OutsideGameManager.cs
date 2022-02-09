@@ -63,6 +63,9 @@ public class OutsideGameManager : MonoBehaviour {
 	private int numberOfQuestions = 7;
 
 	private bool finished;
+	[SerializeField]
+	private notebook _notebook;
+	
 
 
 	// Start is called before the first frame update
@@ -192,19 +195,24 @@ public class OutsideGameManager : MonoBehaviour {
 		if( !animRunning ) {
 			if( !notebookOpen ) {
 				anim.Play("Show");
+				
 				notebookOpen = !notebookOpen;
 				yield return StartCoroutine(WaitForAnimationOver());
+				
 			}
 		}
 		GameManager.Instance.CanInteract = true;
+		_notebook.isInteractible = true;
 	}
 	private IEnumerator CloseNotebook() {
 		GameManager.Instance.CanInteract = false;
 		if( !animRunning ) {
 			if( notebookOpen ) {
+				
 				anim.Play("Hide");
 				notebookOpen = !notebookOpen;
 				yield return StartCoroutine(WaitForAnimationOver());
+				_notebook.isInteractible = false;
 			}
 		}
 		GameManager.Instance.CanInteract = true;

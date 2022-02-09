@@ -5,16 +5,30 @@ using UnityEngine;
 public class NPCPresentingManager : MonoBehaviour
 {
     public Animator anim;
+    [SerializeField]
+    private GameObject birdHead;
 
+    [SerializeField]
+    private int threshold = 4;
+    private GameManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("waitForNextAnim", 4, 0);
-        
+        manager = GameManager.Instance;
     }
-
-   void waitForNextAnim()
+    private void Update()
+    {
+        if (manager.Birdiness >= threshold)
+        {
+            birdHead.gameObject.SetActive(true);
+        }else if (manager.Birdiness < threshold)
+        {
+            birdHead.gameObject.SetActive(false);
+        }
+    }
+    void waitForNextAnim()
     {
         //yield return new WaitForSeconds(4);
         int state = Random.Range(0,3);

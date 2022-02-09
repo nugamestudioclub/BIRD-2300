@@ -8,17 +8,33 @@ public class NPCSittingAnimationManager : MonoBehaviour
     
     private string[] sittingAnims = new string[] { "sitting", "Sitting_Turning_Head_2", "Sitting_Turning_Head_1" };
 
+    [SerializeField]
+    private GameObject birdHead;
+    private GameManager manager;
+    [SerializeField]
+    private int birdinessThreshold = 4;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         StartCoroutine(StartRandom());
+        manager = GameManager.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+     
+        if (manager.Birdiness>=birdinessThreshold)
+        {
+            birdHead.gameObject.SetActive(true);
+        }
+        else if(manager.Birdiness<birdinessThreshold)
+        {
+            birdHead.gameObject.SetActive(false);
+        }
+
     }
 
     void PickRandom()
