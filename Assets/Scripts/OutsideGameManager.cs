@@ -156,6 +156,11 @@ public class OutsideGameManager : MonoBehaviour {
 				// Do something with the object that was hit by the raycast.
 			}
 		}
+		if (this.timerRunning)
+		{
+			this.timer -= Time.deltaTime;
+			timerTxt.text = ((int)this.timer).ToString() + " seconds";
+		}
 	}
 
 	public void ToggleNotebook() {
@@ -177,10 +182,7 @@ public class OutsideGameManager : MonoBehaviour {
 					yield return StartCoroutine(WaitForAnimationOver());
 				}
 			}
-			if( this.timerRunning ) {
-				this.timer -= Time.deltaTime;
-				timerTxt.text = ((int)this.timer).ToString() + " seconds";
-			}
+			
 		}
 	}
 
