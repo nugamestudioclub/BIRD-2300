@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour {
 	}
 	public string LetterGrade {
 		get {
-			if( grade > 100 )
+			if( grade >= 100 )
 				return "S";
 			if( grade >= 97 )
 				return "A+";

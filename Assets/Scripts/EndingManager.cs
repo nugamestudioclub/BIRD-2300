@@ -33,7 +33,7 @@ public class EndingManager : MonoBehaviour
             case "B":
             case "B+":
             case "B-":
-                finalColor = new Color((float)102/255, (float)255/255, 0);
+                finalColor = new Color((float)102/255, 1, 0);
                 break;
             case "C":
             case "C+":
