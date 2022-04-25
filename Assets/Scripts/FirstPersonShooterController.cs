@@ -14,7 +14,7 @@ public class FirstPersonShooterController : MonoBehaviour {
 
 	public Vector3 groundFacing;
 	void Update() {
-		if( !GameManager.Instance.IsTabbedOut ) {
+		if( !GameManager.Instance.IsTabbedOut && GameManager.Instance.CanInteract) {
 			Look();
 			Move();
 		}

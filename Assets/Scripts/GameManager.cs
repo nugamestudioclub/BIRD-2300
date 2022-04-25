@@ -30,10 +30,10 @@ public class GameManager : MonoBehaviour {
 
 	public IEnumerator TabOut() {
 		CanInteract = false;
-		Cursor.lockState = CursorLockMode.None;
-		Cursor.visible = true;
 		audioManager.FocusOut();
 		yield return StartCoroutine(outsideGameManager.Tab());
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 		CanInteract = true;
 		IsTabbedOut = true;
 	}
